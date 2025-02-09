@@ -1,10 +1,22 @@
 'use client'
 import { useEffect, useState } from 'react';
-import Link from "next/link";
+
+interface NavItem {
+  id: string;
+  label: string;
+}
+
+interface HoverPosition {
+  left: number;
+  width: number;
+  show: boolean;
+}
 
 export default function Navbar() {
-  const [activeSection, setActiveSection] = useState('convoke');
-  const [isMobile, setIsMobile] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('convoke');
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [hoverPosition, setHoverPosition] = useState<HoverPosition>({ left: 0, width: 0, show: false });
+  const [activePosition, setActivePosition] = useState<Omit<HoverPosition, 'show'>>({ left: 0, width: 0 });
 
   useEffect(() => {
     const checkMobile = () => {
@@ -15,7 +27,7 @@ export default function Navbar() {
     window.addEventListener('resize', checkMobile);
 
     const handleScroll = () => {
-      const sections = ['convoke', 'about', 'events', 'past'];
+      const sections = ['events', 'sponsors', 'gallery', 'team'];
       let currentSection = 'convoke';
 
       sections.forEach((section) => {
@@ -29,6 +41,21 @@ export default function Navbar() {
       });
 
       setActiveSection(currentSection);
+
+      // Update active section position
+      if (currentSection !== 'convoke') {
+        const activeButton = document.querySelector(`[data-section="${currentSection}"]`);
+        if (activeButton) {
+          const rect = activeButton.getBoundingClientRect();
+          const navRect = document.querySelector('nav')?.getBoundingClientRect();
+          if (navRect) {
+            setActivePosition({
+              left: rect.left - navRect.left,
+              width: rect.width,
+            });
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -37,6 +64,25 @@ export default function Navbar() {
       window.removeEventListener('resize', checkMobile);
     };
   }, []);
+
+  const handleMouseEnter = (sectionId: string) => {
+    const button = document.querySelector(`[data-section="${sectionId}"]`);
+    if (button) {
+      const rect = button.getBoundingClientRect();
+      const navRect = document.querySelector('nav')?.getBoundingClientRect();
+      if (navRect) {
+        setHoverPosition({
+          left: rect.left - navRect.left,
+          width: rect.width,
+          show: true
+        });
+      }
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setHoverPosition(prev => ({ ...prev, show: false }));
+  };
 
   const scrollToSection = (section: string) => {
     const element = document.getElementById(section);
@@ -48,38 +94,57 @@ export default function Navbar() {
     }
   };
 
-  const navItems = [
-    { id: 'convoke', label: 'Convoke' },
-    { id: 'about', label: 'About' },
+  const navItems: NavItem[] = [
     { id: 'events', label: 'Events' },
-    { id: 'past', label: 'Past' }
+    { id: 'sponsors', label: 'Sponsors' },
+    { id: 'gallery', label: 'Gallery' },
+    { id: 'team', label: 'Team' }
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-8 py-4 md:py-6">
-      <div className="max-w-7xl mx-auto items-center justify-between">
-        <div className={`flex justify-center items-center 
-          ${isMobile ? 'space-x-12 sm:space-x-8' : 'space-x-12 md:space-x-24 lg:space-x-52'}`}
-        >
+    <nav className="fixed left-1/2 -translate-x-1/2 top-4 sm:top-6 md:top-8 z-50">
+      <div className="relative backdrop-blur-md border rounded-full px-4 sm:px-6 md:px-8 py-1 sm:py-1.5 md:py-2">
+        {/* Hover effect background */}
+        <div
+          className="absolute transition-all duration-300 ease-out"
+          style={{
+            left: `${hoverPosition.left}px`,
+            width: `${hoverPosition.width}px`,
+            height: '70%',
+            top: '15%',
+            background: 'rgba(0, 0, 0, 0.8)',
+            borderRadius: '24px',
+            opacity: hoverPosition.show ? 1 : 0,
+          }}
+        />
+
+        {/* Active section background */}
+        <div
+          className="absolute transition-all duration-300 ease-out"
+          style={{
+            left: `${activePosition.left}px`,
+            width: `${activePosition.width}px`,
+            height: '70%',
+            top: '15%',
+            background: 'rgba(0, 0, 0, 0.8)',
+            borderRadius: '24px',
+            opacity: activeSection !== 'convoke' ? 1 : 0,
+          }}
+        />
+
+        <div className={`flex items-center ${isMobile ? 'space-x-3 sm:space-x-4' : 'space-x-8 md:space-x-12'}`}>
           {navItems.map((item) => (
             <button
               key={item.id}
+              data-section={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="group relative flex flex-col items-center"
+              onMouseEnter={() => handleMouseEnter(item.id)}
+              onMouseLeave={handleMouseLeave}
+              className="relative px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 z-10"
             >
-              <span className={`text-white font-medium tracking-wide hover:opacity-80 transition-opacity
-                text-xs sm:text-sm md:text-base
-                ${activeSection === item.id ? 'font-semibold' : 'font-normal'}
-                font-poppins`}
-              >
+              <span className={`text-white font-medium tracking-wide transition-all duration-300 text-xs sm:text-sm md:text-base font-mono mix-blend-difference`}>
                 {item.label}
               </span>
-              <span 
-                className={`mt-1 md:mt-2 h-0.5 md:h-1 
-                  ${isMobile ? 'w-0.5 md:w-1' : 'w-1'}
-                  rounded-full transition-all duration-300 ease-in-out
-                  ${activeSection === item.id ? 'bg-white opacity-100' : 'bg-transparent opacity-0'}`}
-              />
             </button>
           ))}
         </div>
