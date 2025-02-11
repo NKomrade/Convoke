@@ -1,78 +1,103 @@
 'use client'
 
 import { useState, useRef } from 'react';
+import { ChevronRight, ChevronLeft } from 'lucide-react';
 
 const categories = ['Robot', 'Tech', 'Extras'];
 
 const eventsData = {
-  Robot: ['Event 1', 'Event 2', 'Event 3', 'Event 4'],
-  Tech: ['Event 5', 'Event 6', 'Event 7', 'Event 8'],
-  Extras: ['Event 9', 'Event 10', 'Event 11', 'Event 12'],
+  Robot: [
+    { title: 'Robotics Summit', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+    { title: 'AI Robotics Conference', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+    { title: 'Future of Automation', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+    { title: 'Humanoid Tech Expo', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+    { title: 'Humanoid Tech Expo', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+    { title: 'Humanoid Tech Expo', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' }
+  ],
+  Tech: [
+    { title: 'Tech Innovation Week', image: 'https://source.unsplash.com/random/800x600?technology' },
+    { title: 'Startup Showcase', image: 'https://source.unsplash.com/random/800x600?startup' },
+    { title: 'Digital Transformation', image: 'https://source.unsplash.com/random/800x600?digital' },
+    { title: 'Future Tech Summit', image: 'https://source.unsplash.com/random/800x600?futuristic' }
+  ],
+  Extras: [
+    { title: 'Creative Tech Mixer', image: 'https://source.unsplash.com/random/800x600?creative' },
+    { title: 'Networking Event', image: 'https://source.unsplash.com/random/800x600?networking' },
+    { title: 'Innovation Workshop', image: 'https://source.unsplash.com/random/800x600?workshop' },
+    { title: 'Tech Community Meetup', image: 'https://source.unsplash.com/random/800x600?meetup' }
+  ]
 };
 
 const Events = () => {
   const [activeCategory, setActiveCategory] = useState('Robot');
-  const scrollRef = useRef(null);
-  const isDown = useRef(false);
-  const startX = useRef(0);
-  const scrollLeft = useRef(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseDown = (e) => {
-    isDown.current = true;
-    startX.current = e.pageX - scrollRef.current.offsetLeft;
-    scrollLeft.current = scrollRef.current.scrollLeft;
-  };
-
-  const handleMouseLeave = () => {
-    isDown.current = false;
-  };
-
-  const handleMouseUp = () => {
-    isDown.current = false;
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDown.current) return;
-    e.preventDefault();
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX.current) * 2; // Scroll speed
-    scrollRef.current.scrollLeft = scrollLeft.current - walk;
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = direction === 'left' ? -300 : 300;
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
   };
 
   return (
-    <div className="mt-10 text-white h-screen">
-      <nav className="flex justify-center gap-4 mb-6">
-        {categories.map((category) => (
-          <button
-            key={category}
-            onClick={() => setActiveCategory(category)}
-            className={`px-4 py-2 rounded-md transition duration-300 ease-in-out ${
-              activeCategory === category
-                ? 'bg-white text-black'
-                : 'bg-black border border-white text-white hover:bg-white hover:text-black'
-            }`}
-          >
-            {category}
-          </button>
-        ))}
-      </nav>
+    <div className="h-screen p-4 mt-10">
+      <div className="w-full mx-auto">
+        <nav className="flex justify-center space-x-4 mb-8">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              className={`
+                px-4 py-2 rounded-lg transition duration-300 
+                ${activeCategory === category 
+                  ? 'bg-white text-black scale-105' 
+                  : 'bg-transparent text-white border border-white/30 hover:bg-white/10'}
+              `}
+            >
+              {category}
+            </button>
+          ))}
+        </nav>
 
-      <div
-        ref={scrollRef}
-        onMouseDown={handleMouseDown}
-        onMouseLeave={handleMouseLeave}
-        onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMove}
-        className="flex overflow-x-auto space-x-4 p-4 cursor-grab active:cursor-grabbing select-none scrollbar-thin scrollbar-thumb-white scrollbar-track-black"
-      >
-        {eventsData[activeCategory].map((event, index) => (
-          <div
-            key={index}
-            className="w-screen h-[400px] bg-white text-black rounded-lg shadow-md p-4 flex items-center justify-center text-xl"
+        <div className="relative group">
+          <button 
+            onClick={() => scroll('left')} 
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/40 rounded-full p-2 hidden group-hover:block"
           >
-            {event}
+            <ChevronLeft className="text-white" />
+          </button>
+          
+          <div 
+            ref={scrollRef}
+            className="flex overflow-x-auto space-x-6 pb-4 scroll-smooth scrollbar-hide"
+            style={{ scrollSnapType: 'x mandatory' }}
+          >
+            {eventsData[activeCategory].map((event, index) => (
+              <div 
+                key={index} 
+                className="flex-shrink-0 w-80 h-96 bg-white/10 rounded-xl overflow-hidden shadow-xl transition duration-300 hover:scale-105"
+                style={{ scrollSnapAlign: 'center' }}
+              >
+                <img 
+                  src={event.image} 
+                  alt={event.title} 
+                  className="w-full h-56 object-cover"
+                />
+                <div className="p-6 text-white">
+                  <h3 className="text-xl font-bold mb-2">{event.title}</h3>
+                  <p className="text-sm opacity-70">Discover the latest in technology and innovation</p>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+          
+          <button 
+            onClick={() => scroll('right')} 
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/40 rounded-full p-2 hidden group-hover:block"
+          >
+            <ChevronRight className="text-white" />
+          </button>
+        </div>
       </div>
     </div>
   );
