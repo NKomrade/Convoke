@@ -103,7 +103,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed left-1/2 -translate-x-1/2 top-4 sm:top-6 md:top-8 z-50">
-      <div className="relative backdrop-blur-md border rounded-full px-4 sm:px-6 md:px-8 py-1 sm:py-1.5 md:py-2">
+      <div className="relative backdrop-blur-md border-2 border-[#E9EBDD] rounded-full px-4 sm:px-6 md:px-8 py-1 sm:py-1.5 md:py-2">
         {/* Hover effect background */}
         <div
           className="absolute transition-all duration-300 ease-out"
@@ -112,7 +112,7 @@ export default function Navbar() {
             width: `${hoverPosition.width}px`,
             height: '70%',
             top: '15%',
-            background: 'rgba(0, 0, 0, 0.8)',
+            background: 'rgba(0, 100, 98, 1)',
             borderRadius: '24px',
             opacity: hoverPosition.show ? 1 : 0,
           }}
@@ -126,7 +126,7 @@ export default function Navbar() {
             width: `${activePosition.width}px`,
             height: '70%',
             top: '15%',
-            background: 'rgba(0, 0, 0, 0.8)',
+            background: 'rgba(0, 100, 98, 1)',
             borderRadius: '24px',
             opacity: activeSection !== 'convoke' ? 1 : 0,
           }}
@@ -142,7 +142,7 @@ export default function Navbar() {
               onMouseLeave={handleMouseLeave}
               className="relative px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 z-10"
             >
-              <span className={`text-white font-medium tracking-wide transition-all duration-300 text-xs sm:text-sm md:text-base font-mono mix-blend-difference`}>
+              <span className={`text-[#B7D0D0] font-medium tracking-wide transition-all duration-300 text-xs sm:text-sm md:text-base font-mono mix-blend-difference`}>
                 {item.label}
               </span>
             </button>

@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 interface StatCardProps {
   title: string;
   subtitle: string;
-  value: string;
   isLarge?: boolean;
   variant: 'date' | 'story' | 'credits' | 'distribution' | 'budget' | 'music' | 'boxOffice';
   position: 'left' | 'middle' | 'right';
@@ -34,8 +33,8 @@ const AnimatedNumber: React.FC<{ value: string }> = ({ value }) => {
   useEffect(() => {
     let start = 0;
     const end = numericValue;
-    const duration = 2000; // 2 seconds
-    const increment = end / (duration / 16); // Update every 16ms
+    const duration = 2000;
+    const increment = end / (duration / 16);
     let timer: NodeJS.Timeout;
 
     const updateNumber = () => {
@@ -56,37 +55,35 @@ const AnimatedNumber: React.FC<{ value: string }> = ({ value }) => {
 };
 
 const getBorderClasses = (position: StatCardProps['position']) => {
-  const borders = {
-    left: 'border-t border-b border-r',
-    middle: 'border-t border-b border-r',
-    right: 'border-t border-b'
-  };
-  return borders[position];
+  return `
+    border-t border-b
+    md:${position === 'left' ? 'border' : ''}
+    md:${position === 'middle' ? 'border' : ''}
+  `;
 };
 
-const getTextAnimation = (variant: StatCardProps['variant']) => {
-  const animations = {
-    date: 'hover:text-purple-400',
-    story: 'hover:text-blue-400',
-    credits: 'hover:text-green-400',
-    distribution: 'hover:text-red-400',
-    budget: 'hover:text-yellow-400',
-    music: 'hover:text-pink-400',
-    boxOffice: 'hover:scale-110 transition-transform duration-700'
+const getHoverEffect = (variant: StatCardProps['variant']) => {
+  const effects = {
+    date: 'hover:shadow-lg',
+    story: 'hover:shadow-lg ',
+    credits: 'hover:shadow-lg ',
+    distribution: 'hover:shadow-lg ',
+    budget: 'hover:shadow-lg ',
+    music: 'hover:shadow-lg',
+    boxOffice: 'hover:shadow-lg'
   };
-  return animations[variant];
+  return effects[variant];
 };
 
 const StatCard: React.FC<StatCardProps> = ({ 
   title, 
   subtitle, 
-  value, 
   isLarge = false,
   variant,
   position 
 }) => {
   const isNumeric = /^\$?\d/.test(title);
-  const textAnimation = getTextAnimation(variant);
+  const hoverEffect = getHoverEffect(variant);
 
   return (
     <div className={`
@@ -95,22 +92,29 @@ const StatCard: React.FC<StatCardProps> = ({
       border-gray-200
       h-64
       relative
+      backdrop-blur-sm
+      transform transition-all duration-500 ease-in-out
       ${getBorderClasses(position)}
       ${isLarge ? 'col-span-2 sm:col-span-2 lg:col-span-2' : ''}
+      ${hoverEffect}
+      group
     `}>
+      <div className="absolute inset-0 bg-black"/>
       <span className={`
         ${isLarge ? 'text-5xl' : 'text-4xl'} 
-        font-bold mb-4 
-        transition-all duration-300
-        ${textAnimation}
+        font-bold font-mono mb-4 
+        transition-all duration-500
+        transform group-hover:translate-y-[-4px]
       `}>
         {isNumeric ? <AnimatedNumber value={title} /> : title}
       </span>
-      <span className="text-base text-gray-400 mb-2 hover:text-white transition-colors duration-300">
+      <span className="
+        text-base font-mono text-gray-400 
+        transition-all duration-500
+        transform group-hover:translate-y-[-2px]
+        group-hover:text-gray-300
+      ">
         {subtitle}
-      </span>
-      <span className="text-sm hover:text-gray-300 transition-colors duration-300">
-        {value}
       </span>
     </div>
   );
@@ -136,32 +140,28 @@ const Stats: React.FC = () => {
 
   return (
     <div className="relative">
-      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 relative">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 relative gap-[1px] bg-gray-200">
         <StatCard
           title={stats.releaseYear}
           subtitle="Release date"
-          value={stats.releaseDate}
           variant="date"
           position="left"
         />
         <StatCard
           title={stats.title}
           subtitle="Story by"
-          value={stats.storyBy}
           variant="story"
           position="middle"
         />
         <StatCard
           title={stats.credits}
           subtitle="Production"
-          value={stats.production}
           variant="credits"
           position="middle"
         />
         <StatCard
           title={stats.distribution}
           subtitle="Distributed by"
-          value={stats.distributedBy}
           variant="distribution"
           position="right"
         />
@@ -170,21 +170,18 @@ const Stats: React.FC = () => {
         <StatCard
           title={stats.budget}
           subtitle="Budget"
-          value={stats.budgetValue}
           variant="budget"
           position="left"
         />
         <StatCard
           title={stats.music}
           subtitle="Music by"
-          value={stats.musicBy}
           variant="music"
           position="middle"
         />
         <StatCard
           title={stats.boxOffice}
           subtitle="Box Office"
-          value={stats.boxOfficeValue}
           variant="boxOffice"
           position="right"
           isLarge={true}

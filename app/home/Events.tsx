@@ -3,22 +3,28 @@
 import { useState, useRef } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 
-const categories = ['Robot', 'Tech', 'Extras'];
+const categories = ['Robot', 'Tech', 'Gaming', 'Extras'];
 
 const eventsData = {
   Robot: [
-    { title: 'Robotics Summit', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
-    { title: 'AI Robotics Conference', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
-    { title: 'Future of Automation', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
-    { title: 'Humanoid Tech Expo', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
-    { title: 'Humanoid Tech Expo', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
-    { title: 'Humanoid Tech Expo', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' }
+    { title: 'Line Follower', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+    { title: 'Micro Mouse', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+    { title: 'Robowars', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+    { title: 'Robo Soccer', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+    { title: 'Custom', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' }
   ],
   Tech: [
-    { title: 'Tech Innovation Week', image: 'https://source.unsplash.com/random/800x600?technology' },
-    { title: 'Startup Showcase', image: 'https://source.unsplash.com/random/800x600?startup' },
-    { title: 'Digital Transformation', image: 'https://source.unsplash.com/random/800x600?digital' },
-    { title: 'Future Tech Summit', image: 'https://source.unsplash.com/random/800x600?futuristic' }
+    { title: 'Hackathon', image: 'https://source.unsplash.com/random/800x600?technology' },
+    { title: 'Tech Quiz', image: 'https://source.unsplash.com/random/800x600?startup' },
+    { title: 'Treasure Hunt', image: 'https://source.unsplash.com/random/800x600?digital' },
+    { title: 'Competitive Programming', image: 'https://source.unsplash.com/random/800x600?futuristic' }
+  ],
+  Gaming: [
+    { title: 'Fifa', image: 'https://source.unsplash.com/random/800x600?technology' },
+    { title: 'Rocket League', image: 'https://source.unsplash.com/random/800x600?startup' },
+    { title: 'Tekken', image: 'https://source.unsplash.com/random/800x600?digital' },
+    { title: 'Mini Militia', image: 'https://source.unsplash.com/random/800x600?futuristic' },
+    { title: 'Mortal Kombat XI', image: 'https://source.unsplash.com/random/800x600?futuristic' }
   ],
   Extras: [
     { title: 'Creative Tech Mixer', image: 'https://source.unsplash.com/random/800x600?creative' },
@@ -40,7 +46,7 @@ const Events = () => {
   };
 
   return (
-    <div className="h-screen p-4 mt-10">
+    <div className="items-center justify-center h-screen p-4 mt-10 flex">
       <div className="w-full mx-auto">
         <nav className="flex justify-center space-x-4 mb-8">
           {categories.map((category) => (
@@ -50,8 +56,8 @@ const Events = () => {
               className={`
                 px-4 py-2 rounded-lg transition duration-300 
                 ${activeCategory === category 
-                  ? 'bg-white text-black scale-105' 
-                  : 'bg-transparent text-white border border-white/30 hover:bg-white/10'}
+                  ? 'bg-white text-black font-mono scale-105' 
+                  : 'bg-transparent text-white border font-mono border-white/30 hover:bg-white/10'}
               `}
             >
               {category}
@@ -84,7 +90,7 @@ const Events = () => {
                   className="w-full h-56 object-cover"
                 />
                 <div className="p-6 text-white">
-                  <h3 className="text-xl font-bold mb-2">{event.title}</h3>
+                  <h3 className="text-xl font-bold mb-2 font-mono">{event.title}</h3>
                   <p className="text-sm opacity-70">Discover the latest in technology and innovation</p>
                 </div>
               </div>

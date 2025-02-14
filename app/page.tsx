@@ -11,7 +11,7 @@ import { TextHoverEffect } from "@/app/components/ui/text-hover-effect";
 
 export default function HomePage() {
   return (
-    <div>
+    <div className="bg-black">
       <Navbar />
       <section id="convoke">
         <Hero />
@@ -31,7 +31,7 @@ export default function HomePage() {
       <section id="team">
         <Team />
       </section>
-      <section>
+      <section className="hidden md:block">
         <div className="justify-center items-center mt-4 mx-8">
           <TextHoverEffect text="Convoke" duration={0.5} />
         </div>
