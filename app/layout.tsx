@@ -1,9 +1,11 @@
-// app/layout.tsx
-import { ReactNode } from "react";
-import Footer from "@/app/components/Footer";
-import "@/app/globals.css"; 
+'use client'
+import { ReactNode, useState } from "react";
+import VideoCurtain from "@/app/components/ui/VideoCurtain";
+import "@/app/globals.css";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  const [videoEnded, setVideoEnded] = useState(false);
+
   return (
     <html lang="en">
       <head>
@@ -11,8 +13,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
-        <main>{children}</main>
-        <Footer />
+        {!videoEnded && <VideoCurtain onEnd={() => setVideoEnded(true)} />}
+        {videoEnded && <main>{children}</main>}
       </body>
     </html>
   );

@@ -21,6 +21,20 @@ module.exports = {
       fontFamily: {
         sans: ["Poppins", ...defaultTheme.fontFamily.sans], // Using Poppins
       },
+      keyframes: {
+        'curtain-down': {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(0)' }
+        },
+        'curtain-up': {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(-100%)' }
+        }
+      },
+      animation: {
+        'curtain-down': 'curtain-down 1s ease-in-out',
+        'curtain-up': 'curtain-up 1s ease-in-out'
+      }
     },
   },
   plugins: [

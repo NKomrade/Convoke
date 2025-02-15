@@ -6,6 +6,7 @@ import Sponsors from "@/app/home/Sponsors";
 import Gallery from "@/app/home/Gallery";
 import Team from "@/app/home/Team";
 import Navbar from "@/app/components/Navbar";
+import Footer from "@/app/components/Footer";
 import { TextHoverEffect } from "@/app/components/ui/text-hover-effect";
 
 
@@ -36,6 +37,7 @@ export default function HomePage() {
           <TextHoverEffect text="Convoke" duration={0.5} />
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

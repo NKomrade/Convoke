@@ -141,7 +141,6 @@
 // }
 
 
-
 'use client'
 import { useEffect, useState } from "react";
 import { Scan, Target, Shield, Lock } from "lucide-react";
@@ -151,6 +150,7 @@ export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
   const [time, setTime] = useState('00:00:00');
+  const [daysLeft, setDaysLeft] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -160,13 +160,19 @@ export default function Hero() {
     const handleMouseMove = (e) => {
       setCoordinates({
         x: (e.clientX / window.innerWidth * 100).toFixed(2),
-        y: (e.clientY / window.innerHeight * 100).toFixed(2)
+        y: (e.clientY / window.innerHeight * 100).toFixed(2),
       });
-    };
+    };    
 
     const updateTime = () => {
       const now = new Date();
       setTime(now.toTimeString().split(' ')[0]);
+      
+      // Calculate days until March 20th, 2025
+      const targetDate = new Date('2025-03-20');
+      const timeDiff = targetDate - now;
+      const daysRemaining = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+      setDaysLeft(daysRemaining);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -222,9 +228,9 @@ export default function Hero() {
         {/* Security Badge */}
         <div className={`mb-6 transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           <div className="flex items-center gap-2 text-[#006462]-500">
-            <Shield className="w-5 h-5" />
-            <span className="text-sm font-mono">SECURITY LEVEL: MAXIMUM</span>
-            <Lock className="w-5 h-5" />
+            <Shield className="w-5 h-5 text-white" />
+            <span className="text-sm font-mono text-white">SECURITY LEVEL: MAXIMUM</span>
+            <Lock className="w-5 h-5 text-white" />
           </div>
         </div>
 
@@ -240,14 +246,17 @@ export default function Hero() {
               2025
             </span>
           </h1>
+          
+          {/* Days Left Counter */}
+          <div className="text-2xl md:text-3xl text-[#006462] font-mono text-center mt-4 animate-pulse">
+            {daysLeft} DAYS REMAINING
+          </div>
         </div>
 
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute h-px w-full bg-gradient-to-r from-transparent via-[#006462] to-transparent top-1/4 animate-[slide-right_3s_ease-in-out_infinite]" />
           <div className="absolute h-px w-full bg-gradient-to-r from-transparent via-[#006462] to-transparent top-3/4 animate-[slide-left_3s_ease-in-out_infinite]" />
         </div>
-
-        
       </div>
 
       {/* HUD Elements */}
