@@ -335,7 +335,7 @@ const slugs = [
 
 const Stats: React.FC = () => {
   const images = slugs.map(
-    (slug) => `https://cdn.simpleicons.org/${slug}/${slug}`,
+    (slug) => `https://cdn.simpleicons.org/${slug}`,
   );
 
   const stats: MovieStats = {
@@ -403,7 +403,7 @@ const Stats: React.FC = () => {
           isLarge={true}
         >
           {/* Replaced $61M with IconCloud component */}
-          <div className="relative flex size-full items-center justify-center overflow-hidden">
+          <div className="relative flex size-full items-center object-cover justify-center">
             <IconCloud images={images} />
           </div>
         </StatCard>
