@@ -117,17 +117,17 @@ import { useState } from 'react';
 import { X } from 'lucide-react';
 
 const images = [
-  'https://images.unsplash.com/photo-1738447429433-69e3ecd0bdd0?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1738934437263-3d8d9fb7414c?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://plus.unsplash.com/premium_photo-1734549547929-9219737132db?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1738447429433-69e3ecd0bdd0?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://plus.unsplash.com/premium_photo-1734549547929-9219737132db?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1738447429433-69e3ecd0bdd0?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1738934437263-3d8d9fb7414c?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://plus.unsplash.com/premium_photo-1734549547929-9219737132db?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1738447429433-69e3ecd0bdd0?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1738934437263-3d8d9fb7414c?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://plus.unsplash.com/premium_photo-1734549547929-9219737132db?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  '/Gallery/2.jpg',
+  '/Gallery/12.jpg',
+  '/Gallery/3.jpg',
+  '/Gallery/4.jpg',
+  '/Gallery/5.jpg',
+  '/Gallery/9.jpg',
+  '/Gallery/8.jpg',
+  '/Gallery/7.jpg',
+  '/Gallery/1.jpeg',
+  '/Gallery/10.jpg',
+  '/Gallery/11.jpg',
 ];
 const spans = [
   'col-span-2', 'col-span-3', 'col-span-3', 'col-span-4',
@@ -140,14 +140,14 @@ export default function GalleryPage() {
   const toggleZoom = () => setIsZoomed(!isZoomed);
 
   return (
-    <div>
+    <div className='min-h-screen'>
       <div className="relative">
         <button
           onClick={toggleZoom}
-          className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 px-4 py-2 bg-black text-white rounded-full shadow flex items-center justify-center transition-all duration-300 hover:bg-black/90"
+          className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 px-2 py-2 bg-black/50 text-white rounded-full shadow flex items-center justify-center transition-all duration-300 hover:bg-black/90"
           style={{ top: '50%' }}
         >
-          {isZoomed ? <X size={24} className="transition-transform duration-300" /> : <span className="transition-opacity duration-300">View Gallery</span>}
+          {isZoomed ? <X size={24} className="transition-transform duration-300" /> : <span className="transition-opacity duration-300 px-4">View Gallery</span>}
         </button>
 
         <div className="grid grid-cols-12 p-4">
