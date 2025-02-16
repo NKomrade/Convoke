@@ -52,7 +52,7 @@ const Footer = () => {
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
-                    allowFullScreen=""
+                    allowFullScreen={true}
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     className="filter"
@@ -85,7 +85,8 @@ const Footer = () => {
                     <Phone className="w-6 h-6 text-teal-300" />
                   </div>
                   <p className="text-gray-300 group-hover:text-white transition-colors duration-300">
-                    +91 123-456-7890
+                    +91 77018 57695 <br />
+                    +91 95969 72831
                   </p>
                 </div>
 

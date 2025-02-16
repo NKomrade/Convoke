@@ -157,12 +157,12 @@ export default function Hero() {
       setOffsetY(window.scrollY * 0.5);
     };
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => { 
       setCoordinates({
-        x: (e.clientX / window.innerWidth * 100).toFixed(2),
-        y: (e.clientY / window.innerHeight * 100).toFixed(2),
+        x: parseFloat(((e.clientX / window.innerWidth) * 100).toFixed(2)),
+        y: parseFloat(((e.clientY / window.innerHeight) * 100).toFixed(2)),
       });
-    };    
+    };       
 
     const updateTime = () => {
       const now = new Date();
@@ -170,7 +170,7 @@ export default function Hero() {
       
       // Calculate days until March 20th, 2025
       const targetDate = new Date('2025-03-20');
-      const timeDiff = targetDate - now;
+      const timeDiff = targetDate.getTime() - now.getTime();
       const daysRemaining = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
       setDaysLeft(daysRemaining);
     };

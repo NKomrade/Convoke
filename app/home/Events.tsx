@@ -3,15 +3,15 @@
 import { useState, useRef } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 
-const categories = ['Robot', 'Tech', 'Gaming', 'Extras'];
+const categories = ['Robot', 'Tech', 'Gaming', 'Extras'] as const;
 
 const eventsData = {
   Robot: [
-    { title: 'Line Follower', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
-    { title: 'Micro Mouse', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
-    { title: 'Robowars', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
-    { title: 'Robo Soccer', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
-    { title: 'Custom', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' }
+    { title: 'Line Follower', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg' },
+    { title: 'Micro Mouse', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg' },
+    { title: 'Robowars', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg' },
+    { title: 'Robo Soccer', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg' },
+    { title: 'Custom', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg' }
   ],
   Tech: [
     { title: 'Hackathon', image: 'https://source.unsplash.com/random/800x600?technology' },
@@ -32,10 +32,10 @@ const eventsData = {
     { title: 'Innovation Workshop', image: 'https://source.unsplash.com/random/800x600?workshop' },
     { title: 'Tech Community Meetup', image: 'https://source.unsplash.com/random/800x600?meetup' }
   ]
-};
+} as const;
 
 const Events = () => {
-  const [activeCategory, setActiveCategory] = useState('Robot');
+  const [activeCategory, setActiveCategory] = useState<keyof typeof eventsData>('Robot');
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: 'left' | 'right') => {
@@ -53,12 +53,10 @@ const Events = () => {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`
-                px-4 py-2 rounded-lg transition duration-300 
+              className={`px-4 py-2 rounded-lg transition duration-300 
                 ${activeCategory === category 
                   ? 'bg-white text-black font-mono scale-105' 
-                  : 'bg-transparent text-white border font-mono border-white/30 hover:bg-white/10'}
-              `}
+                  : 'bg-transparent text-white border font-mono border-white/30 hover:bg-white/10'}`}
             >
               {category}
             </button>
@@ -110,6 +108,7 @@ const Events = () => {
 };
 
 export default Events;
+
 
 // 'use client'
 // import { useState, useEffect, useRef } from 'react';
