@@ -9,7 +9,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
-        <title>Convoke</title>
+        <title>Convoke 7.0</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
