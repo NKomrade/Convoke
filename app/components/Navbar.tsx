@@ -307,7 +307,7 @@ export default function Navbar() {
               onClick={() => scrollToSection(item.id)}
               onMouseEnter={() => handleMouseEnter(item.id)}
               onMouseLeave={handleMouseLeave}
-              className="relative px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 z-10"
+              className="relative px-2 md:px-4 py-2 md:py-2 z-10"
             >
               <span className={`text-[#B7D0D0] font-medium tracking-wide transition-all duration-300 text-xs sm:text-sm md:text-base font-mono mix-blend-difference`}>
                 {item.label}
