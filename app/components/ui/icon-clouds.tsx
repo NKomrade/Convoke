@@ -254,7 +254,7 @@ export function IconCloud({ icons, images }: IconCloudProps) {
         const rotatedY = icon.y * cosX + rotatedZ * sinX
 
         const scale = (rotatedZ + 200) / 300
-        const opacity = Math.max(0.2, Math.min(1, (rotatedZ + 150) / 200))
+        const opacity = Math.max(0.8, Math.min(1, (rotatedZ + 150) / 200))
 
         ctx.save()
         ctx.translate(canvas.width / 2 + rotatedX, canvas.height / 2 + rotatedY)
