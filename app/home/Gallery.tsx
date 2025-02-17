@@ -111,12 +111,13 @@
 //   );
 // }
 
+'use client';
 
-'use client'
 import { useState } from 'react';
+import Image from 'next/image';
 import { X } from 'lucide-react';
 
-const images = [
+const images: string[] = [
   '/Gallery/2.jpg',
   '/Gallery/12.jpg',
   '/Gallery/5.jpg',
@@ -129,18 +130,19 @@ const images = [
   '/Gallery/11.jpg',
   '/Gallery/10.jpg',
 ];
-const spans = [
+
+const spans: string[] = [
   'col-span-3', 'col-span-3', 'col-span-3', 'col-span-3',
   'col-span-4', 'col-span-4', 'col-span-4',
   'col-span-3', 'col-span-4', 'col-span-3', 'col-span-2'
 ];
 
 export default function GalleryPage() {
-  const [isZoomed, setIsZoomed] = useState(false);
-  const toggleZoom = () => setIsZoomed(!isZoomed);
+  const [isZoomed, setIsZoomed] = useState<boolean>(false);
+  const toggleZoom = () => setIsZoomed((prev) => !prev);
 
   return (
-    <div className='min-h-screen'>
+    <div className="min-h-screen">
       <div className="relative">
         <button
           onClick={toggleZoom}
@@ -153,11 +155,12 @@ export default function GalleryPage() {
         <div className="grid grid-cols-12 p-4">
           {images.map((src, index) => (
             <div key={index} className={`relative overflow-hidden ${spans[index]}`}>
-              <img
+              <Image
                 src={src}
                 alt={`Gallery ${index + 1}`}
+                width={500}
+                height={500}
                 className={`w-full h-full rounded-lg object-cover p-[0.15rem] transition-transform duration-500 ease-in-out ${isZoomed ? 'scale-100' : 'scale-50'}`}
-                style={{ minWidth: '100%', minHeight: '100%' }}
               />
             </div>
           ))}
