@@ -248,7 +248,7 @@ export default function Hero() {
           </h1>
 
           {/* Days Left Counter */}
-          <div className="text-2xl md:text-3xl text-[#006462] font-mono text-center mt-4 animate-pulse">
+          <div className="text-2xl md:text-5xl font-bold text-[#006462] font-mono text-center mt-4 animate-pulse">
             {daysLeft} DAYS REMAINING
           </div>
         </div>

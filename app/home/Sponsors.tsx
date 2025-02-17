@@ -10,30 +10,30 @@ type Sponsor = {
 };
 
 const sponsors: Sponsor[] = [
-  {
-    name: 'Spotify',
-    logo: 'https://brandingforum.org/wp-content/uploads/2023/10/spotify-logo-768x488.webp',
-    description: 'Partners who provide music streaming services, content, or related technologies.',
-    category: 'Music Partner',
-  },
+  // {
+  //   name: 'Spotify',
+  //   logo: 'https://brandingforum.org/wp-content/uploads/2023/10/spotify-logo-768x488.webp',
+  //   description: 'Partners who provide music streaming services, content, or related technologies.',
+  //   category: 'Music Partner',
+  // },
   {
     name: 'WEDO',
     logo: '/wedo.jpg',
     description: 'Partners who contribute to the development, design, hosting, or maintenance of our website.',
     category: 'Website Partner',
-  },
-  {
-    name: 'OLA',
-    logo: 'https://swarajya.gumlet.io/swarajya/2021-12/acc9f032-e1e5-49a2-a8ed-a542ad93d57e/Ola_Image.png?w=610&q=50&compress=true&format=auto',
-    description: 'Partners who offer transportation solutions, ride-sharing services, or contribute to logistics and mobility.',
-    category: 'Driving Partner',
-  },
-  {
-    name: 'Amazon',
-    logo: 'https://english.varthabharati.in/storage/uploads/world/Amazon_vb_30.png',
-    description: 'Partners who provide cloud-based infrastructure, services, or solutions.',
-    category: 'Cloud Partner',
-  },
+  }
+  // {
+  //   name: 'OLA',
+  //   logo: 'https://swarajya.gumlet.io/swarajya/2021-12/acc9f032-e1e5-49a2-a8ed-a542ad93d57e/Ola_Image.png?w=610&q=50&compress=true&format=auto',
+  //   description: 'Partners who offer transportation solutions, ride-sharing services, or contribute to logistics and mobility.',
+  //   category: 'Driving Partner',
+  // },
+  // {
+  //   name: 'Amazon',
+  //   logo: 'https://english.varthabharati.in/storage/uploads/world/Amazon_vb_30.png',
+  //   description: 'Partners who provide cloud-based infrastructure, services, or solutions.',
+  //   category: 'Cloud Partner',
+  // },
 ];
 
 const Sponsors = () => {
@@ -44,7 +44,8 @@ const Sponsors = () => {
           Our Sponsors
         </h1>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"> */}
+        <div className="flex w-[30%] justify-center items-center gap-6 sm:gap-8">
           {sponsors.map((sponsor, index) => (
             <div
               key={index}

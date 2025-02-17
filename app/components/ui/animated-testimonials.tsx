@@ -49,7 +49,7 @@ export const AnimatedTestimonials = ({
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (autoplay && testimonials.length > 1) {
-      interval = setInterval(handleNext, 5000);
+      interval = setInterval(handleNext, 8000);
     }
     return () => {
       if (interval) {
