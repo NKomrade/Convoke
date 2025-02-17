@@ -18,7 +18,7 @@ const sponsors: Sponsor[] = [
   },
   {
     name: 'WEDO',
-    logo: '/static/wedo.jpg',
+    logo: '/wedo.jpg',
     description: 'Partners who contribute to the development, design, hosting, or maintenance of our website.',
     category: 'Website Partner',
   },
