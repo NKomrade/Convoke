@@ -25,10 +25,11 @@ const testimonials = [
 
 const Team = () => {
   return (
-    <div>
+    <div >
       <AnimatedTestimonials testimonials={testimonials} autoplay={true} />
     </div>
   );
 };
 
 export default Team;
+

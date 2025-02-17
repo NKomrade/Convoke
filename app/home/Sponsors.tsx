@@ -29,7 +29,7 @@ const sponsors = [
 
 const Sponsors = () => {
   return (
-    <div className="min-h-screen items-center justify-center flex py-10 sm:py-16">
+    <div className="h-full items-center justify-center flex py-10 sm:py-16">
       <div className="max-w-7xl mx-auto px-4">
         <h1 className="text-3xl sm:text-5xl font-bold font-mono text-center text-white mb-10 sm:mb-16">
           Our Sponsors

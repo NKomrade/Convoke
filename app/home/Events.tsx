@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 
-const categories = ['Robot', 'Tech', 'Gaming', 'Extras'] as const;
+const categories = ['Robot', 'Tech', 'Gaming', 'Misc'] as const;
 
 const eventsData = {
   Robot: [
@@ -15,22 +15,24 @@ const eventsData = {
   ],
   Tech: [
     { title: 'Hackathon', image: 'https://source.unsplash.com/random/800x600?technology' },
-    { title: 'Tech Quiz', image: 'https://source.unsplash.com/random/800x600?startup' },
-    { title: 'Treasure Hunt', image: 'https://source.unsplash.com/random/800x600?digital' },
+    { title: 'Tech Talks', image: 'https://source.unsplash.com/random/800x600?startup' },
     { title: 'Competitive Programming', image: 'https://source.unsplash.com/random/800x600?futuristic' }
   ],
   Gaming: [
     { title: 'Fifa', image: 'https://source.unsplash.com/random/800x600?technology' },
-    { title: 'Rocket League', image: 'https://source.unsplash.com/random/800x600?startup' },
+    { title: 'Mortal Kombat', image: 'https://source.unsplash.com/random/800x600?startup' },
     { title: 'Tekken', image: 'https://source.unsplash.com/random/800x600?digital' },
     { title: 'Mini Militia', image: 'https://source.unsplash.com/random/800x600?futuristic' },
-    { title: 'Mortal Kombat XI', image: 'https://source.unsplash.com/random/800x600?futuristic' }
+    { title: 'Rocket League', image: 'https://source.unsplash.com/random/800x600?futuristic' }
   ],
-  Extras: [
-    { title: 'Creative Tech Mixer', image: 'https://source.unsplash.com/random/800x600?creative' },
-    { title: 'Networking Event', image: 'https://source.unsplash.com/random/800x600?networking' },
-    { title: 'Innovation Workshop', image: 'https://source.unsplash.com/random/800x600?workshop' },
-    { title: 'Tech Community Meetup', image: 'https://source.unsplash.com/random/800x600?meetup' }
+  Misc: [
+    { title: 'Biz Tech', image: 'https://source.unsplash.com/random/800x600?creative' },
+    { title: 'Treasure Hunt', image: 'https://source.unsplash.com/random/800x600?creative' },
+    { title: 'Sports Quiz', image: 'https://source.unsplash.com/random/800x600?networking' },
+    { title: 'General Quiz', image: 'https://source.unsplash.com/random/800x600?creative' },
+    { title: 'Stock Market Simulator', image: 'https://source.unsplash.com/random/800x600?creative' },
+    { title: 'Poker Bots', image: 'https://source.unsplash.com/random/800x600?workshop' },
+    { title: 'Case Study', image: 'https://source.unsplash.com/random/800x600?meetup' }
   ]
 } as const;
 

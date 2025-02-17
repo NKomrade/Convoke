@@ -119,18 +119,18 @@ import { X } from 'lucide-react';
 const images = [
   '/Gallery/2.jpg',
   '/Gallery/12.jpg',
-  '/Gallery/3.jpg',
-  '/Gallery/4.jpg',
   '/Gallery/5.jpg',
+  '/Gallery/4.jpg',
+  '/Gallery/3.jpg',
   '/Gallery/9.jpg',
   '/Gallery/8.jpg',
   '/Gallery/7.jpg',
   '/Gallery/1.jpeg',
-  '/Gallery/10.jpg',
   '/Gallery/11.jpg',
+  '/Gallery/10.jpg',
 ];
 const spans = [
-  'col-span-2', 'col-span-3', 'col-span-3', 'col-span-4',
+  'col-span-3', 'col-span-3', 'col-span-3', 'col-span-3',
   'col-span-4', 'col-span-4', 'col-span-4',
   'col-span-3', 'col-span-4', 'col-span-3', 'col-span-2'
 ];
@@ -144,10 +144,10 @@ export default function GalleryPage() {
       <div className="relative">
         <button
           onClick={toggleZoom}
-          className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 px-2 py-2 bg-black/50 text-white rounded-full shadow flex items-center justify-center transition-all duration-300 hover:bg-black/90"
+          className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 md:px-3 md:py-3 px-2 py-2 bg-white/80 text-black rounded-full shadow flex items-center justify-center transition-all duration-300 hover:bg-white"
           style={{ top: '50%' }}
         >
-          {isZoomed ? <X size={24} className="transition-transform duration-300" /> : <span className="transition-opacity duration-300 px-4">View Gallery</span>}
+          {isZoomed ? <X size={24} className="transition-transform w-4 h-3 duration-300" /> : <span className="transition-opacity md:text-[16px] text-[12px] duration-300 px-4">View Gallery</span>}
         </button>
 
         <div className="grid grid-cols-12 p-4">
@@ -156,7 +156,8 @@ export default function GalleryPage() {
               <img
                 src={src}
                 alt={`Gallery ${index + 1}`}
-                className={`w-full h-full transition-transform duration-500 ease-in-out ${isZoomed ? 'scale-100' : 'scale-50'}`}
+                className={`w-full h-full rounded-lg object-cover p-[0.15rem] transition-transform duration-500 ease-in-out ${isZoomed ? 'scale-100' : 'scale-50'}`}
+                style={{ minWidth: '100%', minHeight: '100%' }}
               />
             </div>
           ))}

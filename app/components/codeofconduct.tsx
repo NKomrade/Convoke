@@ -32,12 +32,12 @@ const CodeOfConductModal: React.FC<CodeOfConductModalProps> = ({ isOpen, onClose
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-md"
+        className="absolute inset-0 bg-black/80 backdrop-blur-md"
         onClick={onClose}
       />
       
       {/* Modal */}
-      <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-xl bg-white/10 text-[#006462] shadow-xl backdrop-blur-lg border border-white/20 scrollbar-hide">
+      <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-xl bg-black/15 text-[#006462] shadow-xl backdrop-blur-lg border border-white/20 scrollbar-hide">
         <div className="sticky top-0 z-20 flex items-center justify-between p-6 bg-[#006462] shadow-md">
           <h2 className="md:text-2xl text-xl font-bold text-white">Convoke 7.0 Code of Conduct</h2>
           <button
