@@ -1,51 +1,64 @@
 'use client';
 
-const sponsors = [
-  {
-    name: 'Spotify',
-    logo: 'https://brandingforum.org/wp-content/uploads/2023/10/spotify-logo-768x488.webp',
-    description: 'Partners who provide music streaming services, content, or related technologies.',
-    category: 'Music Partner'
-  },
+import Image from 'next/image';
+
+type Sponsor = {
+  name: string;
+  logo: string;
+  description: string;
+  category: string;
+};
+
+const sponsors: Sponsor[] = [
+  // {
+  //   name: 'Spotify',
+  //   logo: 'https://brandingforum.org/wp-content/uploads/2023/10/spotify-logo-768x488.webp',
+  //   description: 'Partners who provide music streaming services, content, or related technologies.',
+  //   category: 'Music Partner',
+  // },
   {
     name: 'WEDO',
-    logo: '/static/wedo.jpg',
+    logo: '/wedo.jpg',
     description: 'Partners who contribute to the development, design, hosting, or maintenance of our website.',
-    category: 'Website Partner'
-  },
-  {
-    name: 'OLA',
-    logo: 'https://swarajya.gumlet.io/swarajya/2021-12/acc9f032-e1e5-49a2-a8ed-a542ad93d57e/Ola_Image.png?w=610&q=50&compress=true&format=auto',
-    description: ' Partners who offer transportation solutions, ride-sharing services, or contribute to logistics and mobility. ',
-    category: 'Driving Partner'
-  },
-  {
-    name: 'Amazon',
-    logo: 'https://english.varthabharati.in/storage/uploads/world/Amazon_vb_30.png',
-    description: 'Partners who provide cloud-based infrastructure, services, or solutions.',
-    category: 'Cloud Partner'
+    category: 'Website Partner',
   }
+  // {
+  //   name: 'OLA',
+  //   logo: 'https://swarajya.gumlet.io/swarajya/2021-12/acc9f032-e1e5-49a2-a8ed-a542ad93d57e/Ola_Image.png?w=610&q=50&compress=true&format=auto',
+  //   description: 'Partners who offer transportation solutions, ride-sharing services, or contribute to logistics and mobility.',
+  //   category: 'Driving Partner',
+  // },
+  // {
+  //   name: 'Amazon',
+  //   logo: 'https://english.varthabharati.in/storage/uploads/world/Amazon_vb_30.png',
+  //   description: 'Partners who provide cloud-based infrastructure, services, or solutions.',
+  //   category: 'Cloud Partner',
+  // },
 ];
 
 const Sponsors = () => {
   return (
-    <div className="h-full items-center justify-center flex py-10 sm:py-16">
+    <div className="h-full flex items-center justify-center py-10 sm:py-16">
       <div className="max-w-7xl mx-auto px-4">
         <h1 className="text-3xl sm:text-5xl font-bold font-mono text-center text-white mb-10 sm:mb-16">
           Our Sponsors
         </h1>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"> */}
+        <div className="flex w-[30%] justify-center items-center gap-6 sm:gap-8">
           {sponsors.map((sponsor, index) => (
             <div
               key={index}
               className="relative bg-zinc-800/30 rounded-lg sm:rounded-xl overflow-hidden group hover:bg-zinc-700/40 transition-all duration-300"
             >
               <div className="aspect-video relative overflow-hidden">
-                <img
+                <Image
                   src={sponsor.logo}
                   alt={sponsor.name}
+                  width={400}
+                  height={200}
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-all duration-500"
+                  unoptimized // Remove this if using local images
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
               </div>
@@ -60,11 +73,11 @@ const Sponsors = () => {
                       {sponsor.category}
                     </span>
                   </div>
-                  
+
                   <p className="text-gray-400 font-mono text-xs sm:text-sm leading-relaxed">
                     {sponsor.description}
                   </p>
-                  
+
                   <div className="pt-3 sm:pt-4 transform translate-y-6 sm:translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                     <button className="w-full py-2 text-xs sm:text-sm rounded-lg border border-white/80 bg-black/50 text-white">
                       Learn More

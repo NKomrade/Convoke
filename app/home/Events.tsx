@@ -1,38 +1,43 @@
 'use client'
-
 import { useState, useRef } from 'react';
-import { ChevronRight, ChevronLeft } from 'lucide-react';
+import { ChevronRight, ChevronLeft, ArrowRight } from 'lucide-react';
 
 const categories = ['Robot', 'Tech', 'Gaming', 'Misc'] as const;
 
+const categoryBackgrounds = {
+  Robot: '/Events/robot/robot.jpg',
+  Tech: '/Events/tech/tech.jpg',
+  Gaming: '/Events/gaming/gaming.jpg',
+  Misc: '/Events/extras/extras.jpg'
+} as const;
+
 const eventsData = {
   Robot: [
-    { title: 'Line Follower', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg' },
-    { title: 'Micro Mouse', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg' },
-    { title: 'Robowars', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg' },
-    { title: 'Robo Soccer', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg' },
-    { title: 'Custom', image: 'https://images.pexels.com/photos/1476321/pexels-photo-1476321.jpeg' }
+    { title: 'Line Follower', description: 'Build and program robots that can follow paths autonomously', image: '/Events/robot/LFr.jpg' },
+    { title: 'Micro Mouse', description: 'Create tiny robots that can solve complex mazes', image: '/Events/robot/micromouse.jpg' },
+    { title: 'Robowars', description: 'Design battle robots and compete in intense matches', image: '/Events/robot/robowars.jpg' },
+    { title: 'Robo Soccer', description: 'Program robots to play soccer in teams', image: '/Events/robot/robosoccer.jpg' },
+    { title: 'Custom', description: 'A custome soccer game.', image: '/Events/robot/robosoccer.jpg' }
   ],
   Tech: [
-    { title: 'Hackathon', image: 'https://source.unsplash.com/random/800x600?technology' },
-    { title: 'Tech Talks', image: 'https://source.unsplash.com/random/800x600?startup' },
-    { title: 'Competitive Programming', image: 'https://source.unsplash.com/random/800x600?futuristic' }
+    { title: 'Hackathon', description: 'Build innovative solutions in 24 hours', image: '/Events/tech/hashhacks.png' },
+    { title: 'Tech Talks', description: 'Learn from industry experts and thought leaders', image: '/Events/tech/techtalks.png' },
+    { title: 'Competitive Programming', description: 'Solve complex problems under time pressure', image: '/Events/tech/competitiveprogramming.jpg' }
   ],
   Gaming: [
-    { title: 'Fifa', image: 'https://source.unsplash.com/random/800x600?technology' },
-    { title: 'Mortal Kombat', image: 'https://source.unsplash.com/random/800x600?startup' },
-    { title: 'Tekken', image: 'https://source.unsplash.com/random/800x600?digital' },
-    { title: 'Mini Militia', image: 'https://source.unsplash.com/random/800x600?futuristic' },
-    { title: 'Rocket League', image: 'https://source.unsplash.com/random/800x600?futuristic' }
+    { title: 'FC25', description: 'Compete in the ultimate football gaming championship', image: '/Events/gaming/fifa.jpg' },
+    { title: 'Mortal Kombat', description: 'Test your fighting game skills', image: '/Events/gaming/mortal.jpg' },
+    { title: 'Mini Militia', description: 'Join the ground.', image: '/Events/gaming/minimilitia.jpg' },
+    { title: 'Tekken', description: 'Challenge for the arcade.', image: '/Events/gaming/tekken.jpg' }
   ],
   Misc: [
-    { title: 'Biz Tech', image: 'https://source.unsplash.com/random/800x600?creative' },
-    { title: 'Treasure Hunt', image: 'https://source.unsplash.com/random/800x600?creative' },
-    { title: 'Sports Quiz', image: 'https://source.unsplash.com/random/800x600?networking' },
-    { title: 'General Quiz', image: 'https://source.unsplash.com/random/800x600?creative' },
-    { title: 'Stock Market Simulator', image: 'https://source.unsplash.com/random/800x600?creative' },
-    { title: 'Poker Bots', image: 'https://source.unsplash.com/random/800x600?workshop' },
-    { title: 'Case Study', image: 'https://source.unsplash.com/random/800x600?meetup' }
+    { title: 'Biz Tech', description: 'Solve real-world business cases with technology', image: '/Events/extras/biztech.jpeg' },
+    { title: 'Treasure Hunt', description: 'Navigate through technical clues and puzzles', image: '/Events/extras/treasurehunt.jpg' },
+    { title: 'Sports quiz', description: 'Trade virtual stocks and learn market dynamics', image: '/Events/extras/sportsquiz.jpg' },
+    { title: 'General quiz', description: 'Trade virtual stocks and learn market dynamics', image: '/Events/extras/GK.png' },
+    { title: 'Stock Market Simulator', description: 'Trade virtual stocks and learn market dynamics', image: '/Events/extras/stockmarket.jpeg' },
+    { title: 'Poker bots', description: 'Trade virtual stocks and learn market dynamics', image: '/Events/extras/poker.jpg' },
+    { title: 'Case study', description: 'Trade virtual stocks and learn market dynamics', image: '/Events/extras/casestudy.jpg' }
   ]
 } as const;
 
@@ -42,66 +47,99 @@ const Events = () => {
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
-      const scrollAmount = direction === 'left' ? -300 : 300;
+      const scrollAmount = direction === 'left' ? -400 : 400;
       scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
 
   return (
-    <div className="items-center justify-center h-screen p-4 mt-10 flex">
-      <div className="w-full mx-auto">
-        <nav className="flex justify-center space-x-4 mb-8">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`px-4 py-2 rounded-lg transition duration-300 
-                ${activeCategory === category 
-                  ? 'bg-white text-black font-mono scale-105' 
-                  : 'bg-transparent text-white border font-mono border-white/30 hover:bg-white/10'}`}
-            >
-              {category}
-            </button>
-          ))}
-        </nav>
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Background Image with Black Fade */}
+      <div 
+        className="absolute inset-0 transition-transform duration-1000 ease-out transform scale-100"
+        style={{
+          backgroundImage: `url(${categoryBackgrounds[activeCategory]})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          filter: 'brightness(0.3)',
+        }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b backdrop-blur-sm from-black/50 via-transparent to-black/50"></div>
 
+      <div className="relative z-10 px-4 py-12">
+        {/* Category Navigation */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+          <div className="mb-8 md:mb-0">
+            <h1 className="text-6xl font-bold text-white mb-4 font-mono tracking-tighter">
+              {activeCategory}
+              <span className="text-[#48D1CC]">.</span>
+            </h1>
+            <p className="text-gray-300 text-lg max-w-md">
+              Explore our {activeCategory.toLowerCase()} events and competitions
+            </p>
+          </div>
+
+          <div className="flex flex-wrap md:gap-4 gap-2">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`md:px-6 md:py-3 px-4 py-3 rounded-full text-sm md:font-medium font-sm transition-all duration-300
+                  ${activeCategory === category 
+                    ? 'bg-[#48D1CC] text-black shadow-lg shadow-[#48D1CC]/30 scale-105' 
+                    : 'bg-white/10 text-white hover:bg-white/20'}`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Events Carousel */}
         <div className="relative group">
           <button 
             onClick={() => scroll('left')} 
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/40 rounded-full p-2 hidden group-hover:block"
+            className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 rounded-full p-3 opacity-0 group-hover:opacity-100 transition-all duration-300"
           >
-            <ChevronLeft className="text-white" />
+            <ChevronLeft className="text-white w-6 h-6" />
           </button>
-          
+
           <div 
             ref={scrollRef}
-            className="flex overflow-x-auto space-x-6 pb-6 scroll-smooth scrollbar-hide"
-            style={{ scrollSnapType: 'x mandatory' }}
+            className="flex overflow-x-auto space-x-8 pb-12 scroll-smooth scrollbar-hide"
           >
             {eventsData[activeCategory].map((event, index) => (
-              <div 
-                key={index} 
-                className="flex-shrink-0 w-80 h-96 bg-white/10 rounded-xl overflow-hidden shadow-xl transition duration-300 hover:scale-105"
-                style={{ scrollSnapAlign: 'center' }}
-              >
-                <img 
-                  src={event.image} 
-                  alt={event.title} 
-                  className="w-full h-56 object-cover"
-                />
-                <div className="p-6 text-white">
-                  <h3 className="text-xl font-bold mb-2 font-mono">{event.title}</h3>
-                  <p className="text-sm opacity-70">Discover the latest in technology and innovation</p>
+              <div key={index} className="relative flex-shrink-0 w-96 group/card">
+                <div 
+                  className="h-[28rem] rounded-xl overflow-hidden shadow-lg transition-all duration-500 bg-white/10 hover:shadow-[#48D1CC]/30 hover:scale-105"
+                >
+                  <img 
+                    src={event.image} 
+                    alt={event.title} 
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-6 flex flex-col justify-between h-[calc(100%-12rem)]">
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-2 font-mono">
+                        {event.title}
+                      </h3>
+                      <p className="text-gray-300">{event.description}</p>
+                    </div>
+                    <button className="flex items-center gap-2 text-[#48D1CC] hover:text-white transition-all duration-300">
+                      <span>Learn More</span>
+                      <ArrowRight className="w-4 h-4 transition-transform transform hover:translate-x-1" />
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-          
+
           <button 
             onClick={() => scroll('right')} 
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/40 rounded-full p-2 hidden group-hover:block"
+            className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 rounded-full p-3 opacity-0 group-hover:opacity-100 transition-all duration-300"
           >
-            <ChevronRight className="text-white" />
+            <ChevronRight className="text-white w-6 h-6" />
           </button>
         </div>
       </div>
@@ -110,245 +148,3 @@ const Events = () => {
 };
 
 export default Events;
-
-
-// 'use client'
-// import { useState, useEffect, useRef } from 'react';
-// import { ChevronRight, ChevronLeft } from 'lucide-react';
-
-// const categories = ['Robot', 'Tech', 'Gaming', 'Extras'];
-
-// const eventsData = {
-//   Robot: [
-//     { title: 'Line Follower', image: '/api/placeholder/800/600' },
-//     { title: 'Micro Mouse', image: '/api/placeholder/800/600' },
-//     { title: 'Robowars', image: '/api/placeholder/800/600' },
-//     { title: 'Robo Soccer', image: '/api/placeholder/800/600' },
-//     { title: 'Custom', image: '/api/placeholder/800/600' }
-//   ],
-//   Tech: [
-//     { title: 'Hackathon', image: '/api/placeholder/800/600' },
-//     { title: 'Tech Quiz', image: '/api/placeholder/800/600' },
-//     { title: 'Treasure Hunt', image: '/api/placeholder/800/600' },
-//     { title: 'Competitive Programming', image: '/api/placeholder/800/600' }
-//   ],
-//   Gaming: [
-//     { title: 'Fifa', image: '/api/placeholder/800/600' },
-//     { title: 'Rocket League', image: '/api/placeholder/800/600' },
-//     { title: 'Tekken', image: '/api/placeholder/800/600' },
-//     { title: 'Mini Militia', image: '/api/placeholder/800/600' },
-//     { title: 'Mortal Kombat XI', image: '/api/placeholder/800/600' }
-//   ],
-//   Extras: [
-//     { title: 'Creative Tech Mixer', image: '/api/placeholder/800/600' },
-//     { title: 'Networking Event', image: '/api/placeholder/800/600' },
-//     { title: 'Innovation Workshop', image: '/api/placeholder/800/600' },
-//     { title: 'Tech Community Meetup', image: '/api/placeholder/800/600' }
-//   ]
-// };
-
-// const Events = () => {
-//   const [activeCategory, setActiveCategory] = useState('Robot');
-//   const [activeIndex, setActiveIndex] = useState(0);
-//   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
-//   const [isDragging, setIsDragging] = useState(false);
-//   const [startX, setStartX] = useState(0);
-//   const [scrollLeft, setScrollLeft] = useState(0);
-//   const autoScrollTimer = useRef(null);
-//   const carouselRef = useRef(null);
-
-//   const getExpandedArray = (arr) => {
-//     return [...arr, ...arr, ...arr];
-//   };
-
-//   const calculateVisibleIndices = (centerIndex, totalLength) => {
-//     const originalLength = totalLength / 3;
-//     let normalizedIndex = centerIndex;
-    
-//     if (centerIndex >= originalLength * 2) {
-//       normalizedIndex = centerIndex - originalLength * 2;
-//     } else if (centerIndex >= originalLength) {
-//       normalizedIndex = centerIndex - originalLength;
-//     }
-    
-//     return {
-//       normalizedIndex,
-//       visualIndex: centerIndex
-//     };
-//   };
-
-//   const updateCategoryFromIndex = (index) => {
-//     const normalizedIndex = index % (eventsData[activeCategory].length);
-//     const currentEventTitle = eventsData[activeCategory][normalizedIndex].title;
-    
-//     // Find which category contains this event
-//     for (const category of categories) {
-//       if (eventsData[category].some(event => event.title === currentEventTitle)) {
-//         setActiveCategory(category);
-//         break;
-//       }
-//     }
-//   };
-
-//   const resetAutoScroll = () => {
-//     if (autoScrollTimer.current) {
-//       clearInterval(autoScrollTimer.current);
-//     }
-//     if (isAutoScrolling) {
-//       autoScrollTimer.current = setInterval(() => {
-//         handleScroll('right');
-//       }, 4000);
-//     }
-//   };
-
-//   useEffect(() => {
-//     resetAutoScroll();
-//     return () => {
-//       if (autoScrollTimer.current) {
-//         clearInterval(autoScrollTimer.current);
-//       }
-//     };
-//   }, [isAutoScrolling, activeCategory]);
-
-//   const handleScroll = (direction) => {
-//     setIsAutoScrolling(false);
-//     const expandedLength = eventsData[activeCategory].length * 3;
-//     let newIndex = direction === 'left' 
-//       ? activeIndex - 1 
-//       : activeIndex + 1;
-
-//     if (newIndex < 0) {
-//       newIndex = expandedLength - 1;
-//     } else if (newIndex >= expandedLength) {
-//       newIndex = 0;
-//     }
-
-//     setActiveIndex(newIndex);
-//     updateCategoryFromIndex(newIndex);
-//   };
-
-//   const handleDragStart = (e) => {
-//     setIsDragging(true);
-//     setStartX(e.pageX - carouselRef.current.offsetLeft);
-//     setScrollLeft(carouselRef.current.scrollLeft);
-//     setIsAutoScrolling(false);
-//   };
-
-//   const handleDragEnd = () => {
-//     setIsDragging(false);
-//     const cardWidth = carouselRef.current.offsetWidth / 5;
-//     const scrollOffset = carouselRef.current.scrollLeft;
-//     const newIndex = Math.round(scrollOffset / cardWidth);
-//     setActiveIndex(newIndex);
-//     updateCategoryFromIndex(newIndex);
-//   };
-
-//   const handleDragMove = (e) => {
-//     if (!isDragging) return;
-//     e.preventDefault();
-//     const x = e.pageX - carouselRef.current.offsetLeft;
-//     const walk = (x - startX) * 2;
-//     carouselRef.current.scrollLeft = scrollLeft - walk;
-//   };
-
-//   return (
-//     <div className="items-center justify-center min-h-screen p-4 mt-10 flex bg-black">
-//       <div className="w-full max-w-7xl mx-auto">
-//         <nav className="flex justify-center space-x-4 mb-12">
-//           {categories.map((category) => (
-//             <button
-//               key={category}
-//               onClick={() => {
-//                 setActiveCategory(category);
-//                 setActiveIndex(eventsData[category].length);
-//                 setIsAutoScrolling(true);
-//               }}
-//               className={`
-//                 px-6 py-3 rounded-lg transition-all duration-500 text-lg
-//                 ${activeCategory === category 
-//                   ? 'bg-white text-black font-mono scale-110 shadow-lg' 
-//                   : 'bg-transparent text-white border font-mono border-white/30 hover:bg-white/10'}
-//               `}
-//             >
-//               {category}
-//             </button>
-//           ))}
-//         </nav>
-
-//         <div className="relative group px-4">
-//           <button 
-//             onClick={() => handleScroll('left')} 
-//             className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/40 rounded-full p-3 transition-all duration-300"
-//           >
-//             <ChevronLeft className="text-white w-6 h-6" />
-//           </button>
-          
-//           <div 
-//             ref={carouselRef}
-//             className="overflow-hidden mx-8"
-//             onMouseDown={handleDragStart}
-//             onMouseLeave={() => setIsDragging(false)}
-//             onMouseUp={handleDragEnd}
-//             onMouseMove={handleDragMove}
-//           >
-//             <div 
-//               className="flex transition-transform duration-500 ease-out"
-//               style={{
-//                 transform: `translateX(-${(activeIndex * (100 / 5))}%)`,
-//                 gap: '1rem'
-//               }}
-//             >
-//               {getExpandedArray(eventsData[activeCategory]).map((event, index) => {
-//                 const { normalizedIndex } = calculateVisibleIndices(activeIndex, eventsData[activeCategory].length * 3);
-//                 const isCenter = index === activeIndex;
-//                 const distance = Math.abs(index - activeIndex);
-//                 const scale = isCenter ? 1.2 : Math.max(0.7, 1 - (distance * 0.15));
-//                 const zIndex = isCenter ? 10 : 1;
-                
-//                 return (
-//                   <div 
-//                     key={index}
-//                     className="flex-shrink-0 w-1/5 transition-all duration-500"
-//                     style={{
-//                       transform: `scale(${scale})`,
-//                       zIndex
-//                     }}
-//                   >
-//                     <div className="bg-white/10 rounded-xl overflow-hidden shadow-xl">
-//                       <div className="relative aspect-[4/5]">
-//                         <img 
-//                           src={event.image} 
-//                           alt={event.title} 
-//                           className="w-full h-full object-cover"
-//                         />
-//                         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-//                           <h3 className="text-lg font-bold font-mono text-white">
-//                             {event.title}
-//                           </h3>
-//                           {isCenter && (
-//                             <p className="text-sm text-white/80 mt-2">
-//                               Discover the latest in technology and innovation
-//                             </p>
-//                           )}
-//                         </div>
-//                       </div>
-//                     </div>
-//                   </div>
-//                 );
-//               })}
-//             </div>
-//           </div>
-          
-//           <button 
-//             onClick={() => handleScroll('right')} 
-//             className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/40 rounded-full p-3 transition-all duration-300"
-//           >
-//             <ChevronRight className="text-white w-6 h-6" />
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Events;

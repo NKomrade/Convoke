@@ -140,10 +140,9 @@
 //   );
 // }
 
-
-'use client'
-import { useEffect, useState } from "react";
-import { Scan, Target, Shield, Lock } from "lucide-react";
+'use client';
+import { useEffect, useState } from 'react';
+import { Scan, Target, Shield, Lock } from 'lucide-react';
 
 export default function Hero() {
   const [offsetY, setOffsetY] = useState(0);
@@ -153,21 +152,23 @@ export default function Hero() {
   const [daysLeft, setDaysLeft] = useState(0);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return; // Ensure it only runs on the client
+
     const handleScroll = () => {
       setOffsetY(window.scrollY * 0.5);
     };
 
-    const handleMouseMove = (e: MouseEvent) => { 
+    const handleMouseMove = (e: MouseEvent) => {
       setCoordinates({
         x: parseFloat(((e.clientX / window.innerWidth) * 100).toFixed(2)),
         y: parseFloat(((e.clientY / window.innerHeight) * 100).toFixed(2)),
       });
-    };       
+    };
 
     const updateTime = () => {
       const now = new Date();
       setTime(now.toTimeString().split(' ')[0]);
-      
+
       // Calculate days until March 20th, 2025
       const targetDate = new Date('2025-03-20');
       const timeDiff = targetDate.getTime() - now.getTime();
@@ -175,22 +176,23 @@ export default function Hero() {
       setDaysLeft(daysRemaining);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove);
+
     const timeInterval = setInterval(updateTime, 1000);
     setIsVisible(true);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("mousemove", handleMouseMove);
-      clearInterval(timeInterval);
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleMouseMove);
+      clearInterval(timeInterval); // Clean up the interval to prevent memory leaks
     };
   }, []);
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
       {/* Scanning Grid Effect */}
-      <div 
+      <div
         className="absolute inset-0 opacity-20"
         style={{
           backgroundImage: `
@@ -204,7 +206,7 @@ export default function Hero() {
       {/* Background Video */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover opacity-50"
-        src="/static/video.mp4"
+        src="/video.mp4" // Ensure this path is correct for production
         autoPlay
         loop
         muted
@@ -215,7 +217,7 @@ export default function Hero() {
       />
 
       {/* Sophisticated Overlay */}
-      <div className="absolute inset-0 " />
+      <div className="absolute inset-0" />
 
       {/* Radar Scan Effect */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-10">
@@ -235,20 +237,18 @@ export default function Hero() {
         </div>
 
         {/* Main Title */}
-        <div className={`transform transition-all duration-1000 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-        }`}>
+        <div
+          className={`transform transition-all duration-1000 ${
+            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}
+        >
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight text-center mb-4">
-            <span className="relative">
-              CONVOKE
-            </span>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#006462] to-[#006462]/50">
-              2025
-            </span>
+            <span className="relative">CONVOKE</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#006462] to-[#006462]/50">2025</span>
           </h1>
-          
+
           {/* Days Left Counter */}
-          <div className="text-2xl md:text-3xl text-[#006462] font-mono text-center mt-4 animate-pulse">
+          <div className="text-2xl md:text-5xl font-bold text-[#006462] font-mono text-center mt-4 animate-pulse">
             {daysLeft} DAYS REMAINING
           </div>
         </div>
