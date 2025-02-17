@@ -543,19 +543,27 @@ const StatCard: React.FC<StatCardProps> = ({
   );
 };
 
+// const slugs = [
+//   "typescript", "javascript", "dart", "java", "react", "flutter", "android", 
+//   "html5", "css3", "nodedotjs", "express", "nextdotjs", "prisma", "amazonaws", 
+//   "postgresql", "firebase", "nginx", "vercel", "testinglibrary", "jest", 
+//   "cypress", "docker", "git", "jira", "github", "gitlab", "visualstudiocode", 
+//   "androidstudio", "sonarqube", "figma"
+// ];
+
+// const Stats: React.FC = () => {
+//   const images = slugs.map(
+//     (slug) => `https://cdn.simpleicons.org/${slug}`,
+//   );
+
+
 const slugs = [
-  "typescript", "javascript", "dart", "java", "react", "flutter", "android", 
-  "html5", "css3", "nodedotjs", "express", "nextdotjs", "prisma", "amazonaws", 
-  "postgresql", "firebase", "nginx", "vercel", "testinglibrary", "jest", 
-  "cypress", "docker", "git", "jira", "github", "gitlab", "visualstudiocode", 
-  "androidstudio", "sonarqube", "figma"
+  "Oyo Rooms", "Domino`s Pizza Icon", "Wolfram Alpha 2022", "microsoft-svgrepo-com","cblogo", "hacksociety", "JetBrains", "Jarvis", "Monster Energy","DUbeat", "mifos_lg-logo",
+  "RedBull", "HackerEarth", "CodingBlocks", "DUExpress", "gfg-new-logo", "logo_new"
 ];
 
 const Stats: React.FC = () => {
-  const images = slugs.map(
-    (slug) => `https://cdn.simpleicons.org/${slug}`,
-  );
-
+  const images = slugs.map((slug) => `/icons/${slug}.svg`);
   const stats: MovieStats = {
     releaseYear: "2015",
     releaseDate: "1st edition",
@@ -588,7 +596,7 @@ const Stats: React.FC = () => {
         <div className="col-span-2 row-span-2">
           <StatCard subtitle={stats.boxOfficeValue} variant="sponsors" position="right" isLarge={true}>
           <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
-            <div className="scale-[1.5]">
+            <div className="scale-[1.75]">
               <IconCloud images={images} />
             </div>
           </div>
@@ -613,7 +621,7 @@ const Stats: React.FC = () => {
         <div className="col-span-2 row-span-2">
           <StatCard subtitle={stats.boxOfficeValue} variant="sponsors" position="right" isLarge={true}>
           <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
-            <div className="scale-[1.5]">
+            <div className="scale-[1.75]">
               <IconCloud images={images} />
             </div>
           </div>
