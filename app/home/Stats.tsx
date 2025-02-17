@@ -569,20 +569,20 @@ const Stats: React.FC = () => {
     releaseDate: "1st edition",
     title: "1000+",
     storyBy: "Past footfalls",
-    prizes: "1.5 lacs",
+    prizes: "50K",
     production: "Prizes worth",
     eventDates: "20-22 March",
     distributedBy: "Events dates",
     edition: "007",
     budgetValue: "Current edition",
-    events: "35+",
+    events: "25+",
     musicBy: "Events",
     sponsors: "",
     boxOfficeValue: "Past Sponsors"
   };
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative h-full">
       {/* Mobile layout */}
       <div className="grid grid-cols-2 gap-[1px] bg-white/60 md:hidden">
         <StatCard title={stats.releaseYear} subtitle={stats.releaseDate} variant="date" position="left" />

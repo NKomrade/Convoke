@@ -110,7 +110,6 @@
 //     </div>
 //   );
 // }
-
 'use client';
 
 import { useState } from 'react';
@@ -131,10 +130,21 @@ const images: string[] = [
   '/Gallery/10.jpg',
 ];
 
-const spans: string[] = [
+// Desktop spans remain the same
+const desktopSpans: string[] = [
   'col-span-3', 'col-span-3', 'col-span-3', 'col-span-3',
   'col-span-4', 'col-span-4', 'col-span-4',
-  'col-span-3', 'col-span-4', 'col-span-3', 'col-span-2'
+  'col-span-3', 'col-span-3', 'col-span-3', 'col-span-3'
+];
+
+// Mobile spans configuration
+const mobileSpans: string[] = [
+  'col-span-3', 'col-span-3',           
+  'col-span-3', 'col-span-3',           
+  'col-span-3', 'col-span-3',                       
+  'col-span-6',           
+  'col-span-3', 'col-span-3',           
+  'col-span-3', 'col-span-3'            
 ];
 
 export default function GalleryPage() {
@@ -149,18 +159,30 @@ export default function GalleryPage() {
           className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 md:px-3 md:py-3 px-2 py-2 bg-white/80 text-black rounded-full shadow flex items-center justify-center transition-all duration-300 hover:bg-white"
           style={{ top: '50%' }}
         >
-          {isZoomed ? <X size={24} className="transition-transform w-4 h-3 duration-300" /> : <span className="transition-opacity md:text-[16px] text-[12px] duration-300 px-4">View Gallery</span>}
+          {isZoomed ? (
+            <X size={24} className="transition-transform w-4 h-3 duration-300" />
+          ) : (
+            <span className="transition-opacity md:text-[16px] text-[12px] duration-300 px-4">
+              View Gallery
+            </span>
+          )}
         </button>
 
-        <div className="grid grid-cols-12 p-4">
+        <div className="grid md:grid-cols-12 grid-cols-6 p-4 gap-1">
           {images.map((src, index) => (
-            <div key={index} className={`relative overflow-hidden ${spans[index]}`}>
+            <div
+              key={index}
+              className={`relative overflow-hidden 
+                ${window.innerWidth >= 768 ? desktopSpans[index] : mobileSpans[index]}`}
+            >
               <Image
                 src={src}
                 alt={`Gallery ${index + 1}`}
                 width={500}
                 height={500}
-                className={`w-full h-full rounded-lg object-cover p-[0.15rem] transition-transform duration-500 ease-in-out ${isZoomed ? 'scale-100' : 'scale-50'}`}
+                className={`w-full h-full rounded-md object-cover transition-transform duration-500 ease-in-out 
+                  ${isZoomed ? 'scale-100' : 'scale-50'}
+                  ${index === 4 ? 'md:aspect-video aspect-square' : 'aspect-square'}`}
               />
             </div>
           ))}

@@ -34,13 +34,13 @@ const testimonials = [
     src: "/Team/Nitin.jpg"
   },
   {
-    quote: "This team is outstanding in every way!",
+    quote: "The best way to predict the future is to create it.",
     name: "Dev Mishra",
     designation: "Tech Lead",
     src: "/Team/Dev.jpg"
   },
   {
-    quote: "This team is outstanding in every way!",
+    quote: "The future belongs to those who believe in the beauty of their dreams.",
     name: "Mohit Katyal",
     designation: "Core Team",
     src: "/Team/Mohit.jpg"
@@ -55,9 +55,9 @@ const testimonials = [
 
 const Team = () => {
   return (
-    <div className="overflow-hidden mt-[50px]">
-      <h2 className="text-5xl font-bold text-center">Meet Our Team</h2>
-      <div className="md:scale-[1.15] scale-[1.0]">
+    <div className="overflow-hidden mt-10">
+      <h2 className="md:text-5xl text-4xl font-bold text-center">Meet Our Team</h2>
+      <div className="md:scale-[1.15] scale-[0.85]">
         <AnimatedTestimonials testimonials={testimonials} autoplay={true} />
       </div>
     </div>

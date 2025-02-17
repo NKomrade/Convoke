@@ -45,48 +45,50 @@ const Sponsors = () => {
         </h1>
 
         {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"> */}
-        <div className="flex w-[30%] justify-center items-center gap-6 sm:gap-8">
-          {sponsors.map((sponsor, index) => (
-            <div
-              key={index}
-              className="relative bg-zinc-800/30 rounded-lg sm:rounded-xl overflow-hidden group hover:bg-zinc-700/40 transition-all duration-300"
-            >
-              <div className="aspect-video relative overflow-hidden">
-                <Image
-                  src={sponsor.logo}
-                  alt={sponsor.name}
-                  width={400}
-                  height={200}
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-all duration-500"
-                  unoptimized // Remove this if using local images
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
-              </div>
+        <div className="flex justify-center items-center f-full">
+          <div className="flex w-[70%] md:w-[40%] justify-center items-center">
+            {sponsors.map((sponsor, index) => (
+              <div
+                key={index}
+                className="relative bg-zinc-800/30 rounded-lg sm:rounded-xl overflow-hidden group hover:bg-zinc-700/40 transition-all duration-300"
+              >
+                <div className="aspect-video relative overflow-hidden">
+                  <Image
+                    src={sponsor.logo}
+                    alt={sponsor.name}
+                    width={400}
+                    height={200}
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-all duration-500"
+                    unoptimized // Remove this if using local images
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                </div>
 
-              <div className="p-4 sm:p-6">
-                <div className="flex flex-col space-y-2 sm:space-y-3">
-                  <div className="flex items-center justify-between">
-                    <h2 className="text-lg sm:text-xl font-mono font-bold text-white">
-                      {sponsor.name}
-                    </h2>
-                    <span className="px-2 sm:px-3 py-1 text-xs sm:text-sm rounded-full bg-black/20">
-                      {sponsor.category}
-                    </span>
-                  </div>
+                <div className="p-4 sm:p-6">
+                  <div className="flex flex-col space-y-2 sm:space-y-3">
+                    <div className="flex items-center justify-between">
+                      <h2 className="text-lg sm:text-xl font-mono font-bold text-white">
+                        {sponsor.name}
+                      </h2>
+                      <span className="px-2 sm:px-3 py-1 text-xs sm:text-sm rounded-full bg-black/20">
+                        {sponsor.category}
+                      </span>
+                    </div>
 
-                  <p className="text-gray-400 font-mono text-xs sm:text-sm leading-relaxed">
-                    {sponsor.description}
-                  </p>
+                    <p className="text-gray-400 font-mono text-xs sm:text-sm leading-relaxed">
+                      {sponsor.description}
+                    </p>
 
-                  <div className="pt-3 sm:pt-4 transform translate-y-6 sm:translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                    <button className="w-full py-2 text-xs sm:text-sm rounded-lg border border-white/80 bg-black/50 text-white">
-                      Learn More
-                    </button>
+                    <div className="pt-3 sm:pt-4 transform translate-y-6 sm:translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                      <button className="w-full py-2 text-xs sm:text-sm rounded-lg border border-white/80 bg-black/50 text-white">
+                        Learn More
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>

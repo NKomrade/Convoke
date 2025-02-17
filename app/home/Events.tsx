@@ -118,7 +118,7 @@ const Events = () => {
                     alt={event.title} 
                     className="w-full h-48 object-cover"
                   />
-                  <div className="p-6 flex flex-col justify-between h-[calc(100%-12rem)]">
+                  <div className="p-6 flex flex-col justify-between h-[calc(100%-12rem)] w-full max-w-[90%] sm:max-w-md mx-auto">
                     <div>
                       <h3 className="text-2xl font-bold text-white mb-2 font-mono">
                         {event.title}
