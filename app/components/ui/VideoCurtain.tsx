@@ -10,8 +10,8 @@ interface VideoCurtainProps {
 
 const VideoCurtain = ({ 
   onEnd, 
-  desktopVideo = '/static/convoke2k.mp4',
-  mobileVideo = '/static/portrait.mp4'
+  desktopVideo = '/convoke2k.mp4',
+  mobileVideo = '/portrait.mp4'
 }: VideoCurtainProps) => {
   const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState<boolean>(true);
@@ -77,8 +77,10 @@ const VideoCurtain = ({
       }
     };
 
-    handleVideoResize();
-    playVideo();
+    if (mounted) {
+      handleVideoResize();
+      playVideo();
+    }
 
     const video = videoRef.current;
     if (video) {
