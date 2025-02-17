@@ -5,10 +5,10 @@ import { ChevronRight, ChevronLeft, ArrowRight } from 'lucide-react';
 const categories = ['Robot', 'Tech', 'Gaming', 'Misc'] as const;
 
 const categoryBackgrounds = {
-  Robot: '/Events/robot/robot.jpg',
-  Tech: '/Events/tech/tech.jpg',
-  Gaming: '/Events/gaming/gaming.jpg',
-  Misc: '/Events/extras/extras.jpg'
+  Robot: '/Events/robot/Robot.jpg',
+  Tech: '/Events/tech/Tech.jpg',
+  Gaming: '/Events/gaming/Gaming.jpg',
+  Misc: '/Events/extras/Extras.jpg'
 } as const;
 
 const eventsData = {
