@@ -142,7 +142,7 @@
 
 'use client';
 import { useEffect, useState } from 'react';
-import { Scan, Target, Shield, Lock } from 'lucide-react';
+import { Martini, Target, Shield, Lock } from 'lucide-react';
 
 export default function Hero() {
   const [offsetY, setOffsetY] = useState(0);
@@ -231,7 +231,7 @@ export default function Hero() {
         <div className={`mb-6 transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           <div className="flex items-center gap-2 text-[#006462]-500">
             <Shield className="w-5 h-5 text-white" />
-            <span className="text-sm font-mono text-white">SECURITY LEVEL: MAXIMUM</span>
+            <span className="text-sm font-mono text-white">CLUSTER INNOVATION CENTRE</span>
             <Lock className="w-5 h-5 text-white" />
           </div>
         </div>
@@ -263,16 +263,16 @@ export default function Hero() {
       <div className="absolute inset-0 pointer-events-none">
         {/* Top Left */}
         <div className="absolute top-4 left-4 font-mono text-xs text-[#006462]">
-          <div>TIME: {time}</div>
-          <div>LAT: {coordinates.y}°N</div>
-          <div>LONG: {coordinates.x}°E</div>
+          <div>SECURITY: ACTIVE</div>
+          <div>ENCRYPTION: ENABLED</div>
+          <div>CLEARANCE: LEVEL 7</div>
         </div>
 
         {/* Top Right */}
         <div className="absolute top-4 right-4 font-mono text-xs text-[#006462] text-right">
-          <div>SECURITY: ACTIVE</div>
-          <div>ENCRYPTION: ENABLED</div>
-          <div>CLEARANCE: LEVEL 7</div>
+          <div>TIME: {time}</div>
+          <div>LAT: {coordinates.y}°N</div>
+          <div>LONG: {coordinates.x}°E</div>
         </div>
 
         {/* Bottom Left */}
@@ -283,8 +283,8 @@ export default function Hero() {
 
         {/* Bottom Right */}
         <div className="absolute bottom-4 right-4 font-mono text-xs text-[#006462]">
-          <Scan className="w-4 h-4 mb-1 ml-auto" />
-          <div>SCANNING...</div>
+          <Martini className="w-4 h-4 mb-1 ml-auto" />
+          <div>A Martini. Shakened, Not Stirred.</div>
         </div>
 
         {/* Corner Accents */}
