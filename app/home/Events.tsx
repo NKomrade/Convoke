@@ -2,7 +2,6 @@
 import { useState, useRef } from 'react';
 import { ChevronRight, ChevronLeft, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
-import { link } from 'fs';
 import Link from 'next/link';
 
 const categories = ['Robotics', 'Tech', 'Gaming', 'Misc'] as const;

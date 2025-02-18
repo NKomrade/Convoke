@@ -4,7 +4,7 @@ import VideoCurtain from "@/app/components/ui/VideoCurtain";
 import "@/app/globals.css";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  const [videoEnded, setVideoEnded] = useState(true);
+  const [videoEnded, setVideoEnded] = useState(false);
 
   return (
     <html lang="en">
