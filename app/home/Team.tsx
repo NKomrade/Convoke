@@ -57,6 +57,12 @@ const testimonials = [
     name: "Sourav Kumar Verma",
     designation: "Design Team",
     src: "/Team/Sourav.jpg"
+  },
+  {
+    quote: "Meow Meow, Meow Meow... Meow Meow, Meow Meow Meowwwwwww",
+    name: "Billa Bond",
+    designation: "Mascott",
+    src: "/Team/BillaBond.png"
   }
 ];
 
@@ -103,7 +109,7 @@ const Team = () => {
               }}
             >
               <span className="font-poppins text-[15px] font-[590] leading-[19.5px] text-black">
-                Our Team
+                Everyone
               </span>
             </div>
           </button>

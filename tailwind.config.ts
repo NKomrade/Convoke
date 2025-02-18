@@ -20,7 +20,8 @@ const config: Config = {
         ...colors, // Extend with default Tailwind colors
       },
       fontFamily: {
-        sans: ["Poppins", ...defaultTheme.fontFamily.sans], // Using Poppins
+        eurostile: ["Eurostile", "sans-serif"], // Define your custom font
+        sans: ["Poppins", ...defaultTheme.fontFamily.sans], // Extend the default sans fonts
       },
       keyframes: {
         "curtain-down": {

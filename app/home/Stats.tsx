@@ -414,8 +414,6 @@
 
 // export default Stats;
 
-
-
 'use client'
 import React, { useState, useEffect, memo } from 'react';
 import { IconCloud } from "@/app/components/ui/icon-clouds";
@@ -448,19 +446,19 @@ interface MovieStats {
   boxOfficeValue: string;
 }
 
-// Rolling Numbers Animation Component (Triggers on Hover)
+// Rolling Numbers Animation Component
 const AnimatedNumber = memo(({ value, isHovered }: { value: string, isHovered: boolean }) => {
   const [displayValue, setDisplayValue] = useState(value);
 
   useEffect(() => {
     if (!isHovered) {
-      setDisplayValue(value); // Reset to original value when hover is removed
+      setDisplayValue(value);
       return;
     }
 
-    const digits = value.split("").map((char) => (/\d/.test(char) ? parseInt(char, 10) : char)); 
+    const digits = value.split("").map((char) => (/\d/.test(char) ? parseInt(char, 10) : char));
     const maxIterations = 20;
-    const animationDuration = 800; 
+    const animationDuration = 800;
     const intervalTime = animationDuration / maxIterations;
     let frame = 0;
 
@@ -468,9 +466,9 @@ const AnimatedNumber = memo(({ value, isHovered }: { value: string, isHovered: b
       frame++;
       const newDisplay = digits.map((char) => {
         if (typeof char === "number") {
-          return Math.floor(Math.random() * 10); 
+          return Math.floor(Math.random() * 10);
         }
-        return char; 
+        return char;
       });
 
       setDisplayValue(newDisplay.join(""));
@@ -478,7 +476,7 @@ const AnimatedNumber = memo(({ value, isHovered }: { value: string, isHovered: b
       if (frame < maxIterations) {
         setTimeout(updateDigits, intervalTime);
       } else {
-        setDisplayValue(value); // Restore original value after rolling ends
+        setDisplayValue(value);
       }
     };
 
@@ -489,7 +487,6 @@ const AnimatedNumber = memo(({ value, isHovered }: { value: string, isHovered: b
 });
 
 AnimatedNumber.displayName = 'AnimatedNumber';
-
 
 // Utility functions
 const getBorderClasses = (position: StatCardProps['position']): string => {
@@ -507,7 +504,7 @@ const getVariantSpecificClasses = (variant: StatCardProps['variant']): string =>
   }
 };
 
-// Memoized StatCard component
+// StatCard component
 const StatCard = memo(({
   title,
   subtitle,
@@ -520,12 +517,34 @@ const StatCard = memo(({
 }: StatCardProps) => {
   const isNumeric = title ? /^\$?\d/.test(title) : false;
   const variantClasses = getVariantSpecificClasses(variant);
-  const [isHovered, setIsHovered] = useState(false); // Track hover state
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Define corner image based on variant
+  const getCornerImage = (variant: StatCardProps['variant']) => {
+    switch (variant) {
+      case 'date':
+        return '/Static/Billa.png';
+      case 'footfall':
+        return '/Static/Billa.png';
+      case 'prizes':
+        return '/Static/Billa.png';
+      case 'eventDates':
+        return '/Static/Billa.png';
+      case 'edition':
+        return '/Static/Billa.png';
+      case 'events':
+        return '/Static/Billa.png';
+      case 'sponsors':
+        return '/Static/Billa.png';
+      default:
+        return '';
+    }
+  };
 
   return (
     <div
       className={`
-        relative overflow-hidden bg-black/60 p-8 text-[#006462]
+        relative overflow-hidden bg-black p-8 text-[#006462]
         flex flex-col items-center justify-between border-gray-200
         backdrop-blur-sm transform transition-all duration-500 ease-in-out
         ${getBorderClasses(position)}
@@ -535,7 +554,7 @@ const StatCard = memo(({
       `}
       role="article"
       aria-label={`${subtitle} statistics`}
-      onMouseEnter={() => setIsHovered(true)} // Start animation on hover
+      onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Background Image (Hover Effect) */}
@@ -551,8 +570,26 @@ const StatCard = memo(({
         />
       )}
 
+      {/* Corner Image */}
+      <div
+        className="
+          absolute bottom-0 right-0 w-16 h-16
+          transform translate-y-full transition-transform duration-500 ease-in-out
+          group-hover:translate-y-0 z-20
+        "
+      >
+        <img
+          src={getCornerImage(variant)}
+          alt=""
+          className="w-full h-full object-contain"
+          aria-hidden="true"
+        />
+      </div>
+
       {/* Overlay for readability */}
-      {hoverBgImage && <div className="absolute inset-0 bg-black/60 transition-opacity group-hover:bg-black/40"></div>}
+      {hoverBgImage && (
+        <div className="absolute inset-0 bg-black/60 transition-opacity group-hover:bg-black/40" />
+      )}
 
       {/* Content */}
       {title && (
@@ -582,7 +619,6 @@ const StatCard = memo(({
   );
 });
 
-
 StatCard.displayName = 'StatCard';
 
 // Constants
@@ -611,10 +647,10 @@ const Stats: React.FC = () => {
     boxOfficeValue: "Past Sponsors"
   };
 
-  // Memoized IconCloud wrapper
+  // Sponsors Cloud component
   const SponsorsCloud = memo(() => (
     <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
-      <div className="scale-[1.5]">
+      <div className="scale-[1.65]">
         <IconCloud images={images} />
       </div>
     </div>
@@ -626,20 +662,55 @@ const Stats: React.FC = () => {
     <div className="relative h-full text-extrabold">
       {/* Mobile layout */}
       <div className="grid grid-cols-2 gap-[1px] bg-black/80 md:hidden">
-        <StatCard title={stats.releaseYear} subtitle={stats.releaseDate} variant="date" position="left" rollingNumbers/>
-        <StatCard
-          title="1000+"
-          subtitle="Past footfall"
-          variant="footfall"
-          position="middle"
+        <StatCard 
+          title={stats.releaseYear} 
+          subtitle={stats.releaseDate} 
+          variant="date" 
+          position="left" 
+          rollingNumbers
+        />
+        <StatCard 
+          title="1000+" 
+          subtitle="Past footfall" 
+          variant="footfall" 
+          position="middle" 
           hoverBgImage="/Team/Nitin.jpg"
-        />        
-        <StatCard title={stats.prizes} subtitle={stats.production} variant="prizes" position="middle" rollingNumbers/>
-        <StatCard title={stats.eventDates} subtitle={stats.distributedBy} variant="eventDates" position="right" hoverBgImage='/Team/Nitin.jpg'/>
-        <StatCard title={stats.edition} subtitle={stats.budgetValue} variant="edition" position="left" rollingNumbers/>
-        <StatCard title={stats.events} subtitle={stats.musicBy} variant="events" position="middle" hoverBgImage='/Team/Nitin.jpg'/>
+        />
+        <StatCard 
+          title={stats.prizes} 
+          subtitle={stats.production} 
+          variant="prizes" 
+          position="middle" 
+          rollingNumbers
+        />
+        <StatCard 
+          title={stats.eventDates} 
+          subtitle={stats.distributedBy} 
+          variant="eventDates" 
+          position="right" 
+          hoverBgImage='/Team/Nitin.jpg'
+        />
+        <StatCard 
+          title={stats.edition} 
+          subtitle={stats.budgetValue} 
+          variant="edition" 
+          position="left" 
+          rollingNumbers
+        />
+        <StatCard 
+          title={stats.events} 
+          subtitle={stats.musicBy} 
+          variant="events" 
+          position="middle" 
+          hoverBgImage='/Team/Nitin.jpg'
+        />
         <div className="col-span-2 row-span-2">
-          <StatCard subtitle={stats.boxOfficeValue} variant="sponsors" position="right" isLarge>
+          <StatCard 
+            subtitle={stats.boxOfficeValue} 
+            variant="sponsors" 
+            position="right" 
+            isLarge
+          >
             <SponsorsCloud />
           </StatCard>
         </div>
@@ -648,45 +719,65 @@ const Stats: React.FC = () => {
       {/* Desktop layout */}
       <div className="hidden md:grid md:grid-cols-5 md:grid-rows-2 gap-[1px] bg-white/20 auto-rows-[256px]">
         <div className="col-span-1">
-          <StatCard title={stats.releaseYear} subtitle={stats.releaseDate} variant="date" position="left" rollingNumbers/>
+          <StatCard 
+            title={stats.releaseYear} 
+            subtitle={stats.releaseDate} 
+            variant="date" 
+            position="left" 
+            rollingNumbers
+          />
         </div>
         <div className="col-span-1">
-        <StatCard
-          title="1000+"
-          subtitle="Past footfall"
-          variant="footfall"
-          position="middle"
-          hoverBgImage="/Team/Nitin.jpg"
-        /> 
+          <StatCard
+            title="1000+"
+            subtitle="Past footfall"
+            variant="footfall"
+            position="middle"
+          />
         </div>
         <div className="col-span-1">
-          <StatCard title={stats.prizes} subtitle={stats.production} variant="prizes" position="middle" rollingNumbers/>
+          <StatCard 
+            title={stats.prizes} 
+            subtitle={stats.production} 
+            variant="prizes" 
+            position="middle" 
+            rollingNumbers
+          />
         </div>
         <div className="col-span-2 row-span-2">
-          <StatCard subtitle={stats.boxOfficeValue} variant="sponsors" position="right" isLarge hoverBgImage="/Team/Nitin.jpg">
+          <StatCard 
+            subtitle={stats.boxOfficeValue} 
+            variant="sponsors" 
+            position="right" 
+            isLarge 
+          >
             <SponsorsCloud />
           </StatCard>
         </div>
         <div className="col-span-1">
-        <StatCard
-          title="20-22 March"
-          subtitle="Events Dates"
-          variant="eventDates"
-          position="left"
-          hoverBgImage="/Team/Nitin.jpg"
-        /> 
+          <StatCard
+            title="20-22 March"
+            subtitle="Events Dates"
+            variant="eventDates"
+            position="left"
+          />
         </div>
         <div className="col-span-1">
-          <StatCard title={stats.edition} subtitle={stats.budgetValue} variant="edition" position="middle" rollingNumbers/>
+          <StatCard 
+            title={stats.edition} 
+            subtitle={stats.budgetValue} 
+            variant="edition" 
+            position="middle" 
+            rollingNumbers
+          />
         </div>
         <div className="col-span-1">
-        <StatCard
-          title="25+"
-          subtitle="Events"
-          variant="events"
-          position="middle"
-          hoverBgImage="/Team/Nitin.jpg"
-        /> 
+          <StatCard
+            title="25+"
+            subtitle="Events"
+            variant="events"
+            position="middle"
+          />
         </div>
       </div>
     </div>

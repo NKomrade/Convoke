@@ -261,7 +261,7 @@ export function IconCloud({ icons, images }: IconCloudProps) {
         ctx.scale(scale, scale)
         ctx.globalAlpha = opacity
         
-        const iconSize = 60
+        const iconSize = 50
 
         if (icons || images) {
           // Only try to render icons/images if they exist

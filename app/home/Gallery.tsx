@@ -110,9 +110,10 @@
 //     </div>
 //   );
 // }
+
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { X } from 'lucide-react';
 
@@ -139,16 +140,26 @@ const desktopSpans: string[] = [
 
 // Mobile spans configuration
 const mobileSpans: string[] = [
-  'col-span-3', 'col-span-3',           
-  'col-span-3', 'col-span-3',           
-  'col-span-3', 'col-span-3',                       
-  'col-span-6',           
-  'col-span-3', 'col-span-3',           
-  'col-span-3', 'col-span-3'            
+  'col-span-3', 'col-span-3',
+  'col-span-3', 'col-span-3',
+  'col-span-3', 'col-span-3',
+  'col-span-6',
+  'col-span-3', 'col-span-3',
+  'col-span-3', 'col-span-3'
 ];
 
 export default function GalleryPage() {
   const [isZoomed, setIsZoomed] = useState<boolean>(false);
+  const [isDesktop, setIsDesktop] = useState<boolean>(false);
+
+  // Handle window width in useEffect
+  useEffect(() => {
+    const updateSize = () => setIsDesktop(window.innerWidth >= 768);
+    updateSize(); // Set initial value
+    window.addEventListener('resize', updateSize);
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+
   const toggleZoom = () => setIsZoomed((prev) => !prev);
 
   return (
@@ -172,8 +183,7 @@ export default function GalleryPage() {
           {images.map((src, index) => (
             <div
               key={index}
-              className={`relative overflow-hidden 
-                ${window.innerWidth >= 768 ? desktopSpans[index] : mobileSpans[index]}`}
+              className={`relative overflow-hidden ${isDesktop ? desktopSpans[index] : mobileSpans[index]}`}
             >
               <Image
                 src={src}
