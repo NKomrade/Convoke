@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import { AnimatedTestimonials } from '../components/ui/animated-testimonials';
 
 const testimonials = [
@@ -40,12 +41,6 @@ const testimonials = [
     src: "/Team/Anhad.jpg"
   },
   {
-    quote: "The best way to predict the future is to create it.",
-    name: "Dev Mishra",
-    designation: "Tech Lead",
-    src: "/Team/Dev.jpg"
-  },
-  {
     quote: "The future belongs to those who believe in the beauty of their dreams.",
     name: "Mohit Katyal",
     designation: "Core Team",
@@ -65,15 +60,59 @@ const testimonials = [
   }
 ];
 
+
 const Team = () => {
   return (
-    <div className="overflow-hidden mt-10">
-      <h2 className="md:text-5xl text-4xl font-bold text-center text-white">Meet Our Team</h2>
+    <div className="relative overflow-hidden mt-10 pb-16">
+      {/* Title */}
+      <h2 className="md:text-5xl text-4xl font-bold text-center text-white">
+        Meet Our Team
+      </h2>
+
+      {/* Testimonials Section */}
       <div className="md:scale-[1.15] scale-[0.85]">
         <AnimatedTestimonials testimonials={testimonials} autoplay={true} />
+      </div>
+
+      {/* Bouncy Button at Bottom Right */}
+      <div className="absolute bottom-28 right-6 md:right-28">
+        <Link
+          href="https://notion.so/your-notion-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="button-wrapper relative"
+        >
+          {/* Black Shadow */}
+          <div
+            className="absolute inset-0 rounded-full bg-gradient-to-r from-[#006462] to-teal-600 button-shadow"
+            style={{
+              width: "168px",
+              height: "40px",
+              top: "6px", 
+              left: "6px",
+            }}
+          ></div>
+
+          {/* Button Content */}
+          <button className="button-content relative flex items-center justify-center rounded-full border-[2.5px] border-black bg-white transition-transform duration-300 active:scale-95">
+            <div
+              className="flex items-center justify-center rounded-full border-[2px] border-black"
+              style={{
+                width: "170px",
+                height: "42px",
+              }}
+            >
+              <span className="font-poppins text-[15px] font-[590] leading-[19.5px] text-black">
+                Our Team
+              </span>
+            </div>
+          </button>
+        </Link>
       </div>
     </div>
   );
 };
 
 export default Team;
+
+

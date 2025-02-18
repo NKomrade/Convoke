@@ -30,3 +30,33 @@ body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+.button-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.button-shadow {
+  position: absolute;
+  z-index: 0;
+  /* Behind the button */
+}
+
+.button-content {
+  position: relative;
+  z-index: 1;
+  /* Above the shadow */
+  outline: none;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  transition: transform 200ms ease;
+}
+
+.button-wrapper:hover .button-content {
+  transform: translate(4px, 3px);
+}
+
+.button-wrapper:active .button-content {
+  transform: translate(4px, 6px);
+}

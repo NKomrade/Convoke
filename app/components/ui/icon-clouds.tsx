@@ -260,11 +260,13 @@ export function IconCloud({ icons, images }: IconCloudProps) {
         ctx.translate(canvas.width / 2 + rotatedX, canvas.height / 2 + rotatedY)
         ctx.scale(scale, scale)
         ctx.globalAlpha = opacity
+        
+        const iconSize = 60
 
         if (icons || images) {
           // Only try to render icons/images if they exist
           if (iconCanvasesRef.current[index] && imagesLoadedRef.current[index]) {
-            ctx.drawImage(iconCanvasesRef.current[index], -20, -20, 40, 40)
+            ctx.drawImage(iconCanvasesRef.current[index], -iconSize / 2, -iconSize / 2, iconSize, iconSize)
           }
         } else {
           // Show numbered circles if no icons/images are provided

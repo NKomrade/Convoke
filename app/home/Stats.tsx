@@ -625,8 +625,8 @@ const Stats: React.FC = () => {
   return (
     <div className="relative h-full">
       {/* Mobile layout */}
-      <div className="grid grid-cols-2 gap-[1px] bg-white/60 md:hidden">
-        <StatCard title={stats.releaseYear} subtitle={stats.releaseDate} variant="date" position="left" />
+      <div className="grid grid-cols-2 gap-[1px] bg-black/80 md:hidden">
+        <StatCard title={stats.releaseYear} subtitle={stats.releaseDate} variant="date" position="left" rollingNumbers/>
         <StatCard
           title="1000+"
           subtitle="Past footfall"
@@ -634,10 +634,10 @@ const Stats: React.FC = () => {
           position="middle"
           hoverBgImage="/Team/Nitin.jpg"
         />        
-        <StatCard title={stats.prizes} subtitle={stats.production} variant="prizes" position="middle" />
-        <StatCard title={stats.eventDates} subtitle={stats.distributedBy} variant="eventDates" position="right" />
-        <StatCard title={stats.edition} subtitle={stats.budgetValue} variant="edition" position="left" />
-        <StatCard title={stats.events} subtitle={stats.musicBy} variant="events" position="middle" />
+        <StatCard title={stats.prizes} subtitle={stats.production} variant="prizes" position="middle" rollingNumbers/>
+        <StatCard title={stats.eventDates} subtitle={stats.distributedBy} variant="eventDates" position="right" hoverBgImage='/Team/Nitin.jpg'/>
+        <StatCard title={stats.edition} subtitle={stats.budgetValue} variant="edition" position="left" rollingNumbers/>
+        <StatCard title={stats.events} subtitle={stats.musicBy} variant="events" position="middle" hoverBgImage='/Team/Nitin.jpg'/>
         <div className="col-span-2 row-span-2">
           <StatCard subtitle={stats.boxOfficeValue} variant="sponsors" position="right" isLarge>
             <SponsorsCloud />
