@@ -183,7 +183,7 @@
 import { useState } from 'react';
 import CodeOfConductModal from './codeofconduct';
 import EmergencyResourcesModal from './emergency';
-import { MapPin, Phone, Mail, ExternalLink, X } from 'lucide-react';
+import { MapPin, Phone, Mail, ExternalLink } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
