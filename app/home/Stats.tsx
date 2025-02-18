@@ -415,7 +415,7 @@
 // export default Stats;
 
 'use client'
-import React, { useState, useEffect, useCallback, memo } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { IconCloud } from "@/app/components/ui/icon-clouds";
 
 interface StatCardProps {
