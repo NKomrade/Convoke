@@ -3,17 +3,17 @@ import { useState, useRef } from 'react';
 import { ChevronRight, ChevronLeft, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 
-const categories = ['Robot', 'Tech', 'Gaming', 'Misc'] as const;
+const categories = ['Robotics', 'Tech', 'Gaming', 'Misc'] as const;
 
 const categoryBackgrounds = {
-  Robot: '/Events/robot/Robot.jpg',
+  Robotics: '/Events/robot/Robot.jpg',
   Tech: '/Events/tech/Tech.jpg',
   Gaming: '/Events/gaming/Gaming.jpg',
   Misc: '/Events/extras/Extras.jpg'
 } as const;
 
 const eventsData = {
-  Robot: [
+  Robotics: [
     { title: 'Line Follower', description: 'Build and program robots that can follow paths autonomously', image: '/Events/robot/LFr.jpg' },
     { title: 'Micro Mouse', description: 'Create tiny robots that can solve complex mazes', image: '/Events/robot/micromouse.jpg' },
     { title: 'Robowars', description: 'Design battle robots and compete in intense matches', image: '/Events/robot/robowars.jpg' },
@@ -43,7 +43,7 @@ const eventsData = {
 } as const;
 
 const Events = () => {
-  const [activeCategory, setActiveCategory] = useState<keyof typeof eventsData>('Robot');
+  const [activeCategory, setActiveCategory] = useState<keyof typeof eventsData>('Robotics');
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: 'left' | 'right') => {
@@ -74,7 +74,6 @@ const Events = () => {
           <div className="mb-8 md:mb-0">
             <h1 className="text-6xl font-bold text-white mb-4 font-mono tracking-tighter">
               {activeCategory}
-              <span className="text-[#48D1CC]">.</span>
             </h1>
             <p className="text-gray-300 text-lg max-w-md">
               Explore our {activeCategory.toLowerCase()} events and competitions
