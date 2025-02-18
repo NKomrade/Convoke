@@ -34,11 +34,11 @@ const eventsData = {
   Misc: [
     { title: 'Biz Tech', description: 'Solve real-world business cases with technology', image: '/Events/extras/biztech.jpeg' },
     { title: 'Treasure Hunt', description: 'Navigate through technical clues and puzzles', image: '/Events/extras/treasurehunt.jpg' },
-    { title: 'Sports quiz', description: 'Trade virtual stocks and learn market dynamics', image: '/Events/extras/sportsquiz.jpg' },
-    { title: 'General quiz', description: 'Trade virtual stocks and learn market dynamics', image: '/Events/extras/GK.png' },
+    { title: 'Sports Quiz', description: 'Trade virtual stocks and learn market dynamics', image: '/Events/extras/sportsquiz.jpg' },
+    { title: 'General Quiz', description: 'Trade virtual stocks and learn market dynamics', image: '/Events/extras/GK.png' },
     { title: 'Stock Market Simulator', description: 'Trade virtual stocks and learn market dynamics', image: '/Events/extras/stockmarket.jpeg' },
-    { title: 'Poker bots', description: 'Trade virtual stocks and learn market dynamics', image: '/Events/extras/poker.jpg' },
-    { title: 'Case study', description: 'Trade virtual stocks and learn market dynamics', image: '/Events/extras/casestudy.jpg' }
+    { title: 'Poker Bots', description: 'Trade virtual stocks and learn market dynamics', image: '/Events/extras/poker.jpg' },
+    { title: 'Case Study', description: 'Trade virtual stocks and learn market dynamics', image: '/Events/extras/casestudy.jpg' }
   ]
 } as const;
 

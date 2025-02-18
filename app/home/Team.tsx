@@ -34,6 +34,12 @@ const testimonials = [
     src: "/Team/Nitin.jpg"
   },
   {
+    quote: "What about second breakfast?",
+    name: "Anhad Mehrotra",
+    designation: "Core Team",
+    src: "/Team/Anhad.jpg"
+  },
+  {
     quote: "The best way to predict the future is to create it.",
     name: "Dev Mishra",
     designation: "Tech Lead",
@@ -50,6 +56,12 @@ const testimonials = [
     name: "Saswat Susmoy Sahoo",
     designation: "Design Head",
     src: "/Team/Susmoy.jpg"
+  },
+  {
+    quote: "Creativity takes courage, and innovation makes it impactful.",
+    name: "Sourav Kumar Verma",
+    designation: "Design Team",
+    src: "/Team/Sourav.jpg"
   }
 ];
 
