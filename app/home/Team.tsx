@@ -46,7 +46,7 @@ const testimonials = [
     src: "/Team/Mohit.jpg"
   },
   {
-    quote: "It is until a mosquito lands on your testicles, when you learn that violence does not solve all problems.",
+    quote: "All the greatest men are maniacs.",
     name: "Saswat Susmoy Sahoo",
     designation: "Design Head",
     src: "/Team/Susmoy.jpg"
