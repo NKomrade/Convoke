@@ -493,8 +493,27 @@ const getBorderClasses = (position: StatCardProps['position']): string => {
 };
 
 const getHoverEffect = (variant: StatCardProps['variant']): string => {
-  const baseEffect = 'hover:shadow-lg hover:shadow-[#006462]/10';
-  return baseEffect;
+  switch (variant) {
+    case 'sponsors':
+      return 'hover:shadow-lg hover:shadow-[#006462]/20';
+    case 'prizes':
+      return 'hover:shadow-lg hover:shadow-[#006462]/15';
+    case 'footfall':
+      return 'hover:shadow-lg hover:shadow-[#006462]/15';
+    default:
+      return 'hover:shadow-lg hover:shadow-[#006462]/10';
+  }
+};
+
+const getVariantSpecificClasses = (variant: StatCardProps['variant']): string => {
+  switch (variant) {
+    case 'sponsors':
+      return 'overflow-hidden';
+    case 'prizes':
+      return 'font-bold';
+    default:
+      return '';
+  }
 };
 
 // Memoized StatCard component
@@ -508,6 +527,7 @@ const StatCard = memo(({
 }: StatCardProps) => {
   const isNumeric = title ? /^\$?\d/.test(title) : false;
   const hoverEffect = getHoverEffect(variant);
+  const variantClasses = getVariantSpecificClasses(variant);
 
   return (
     <div 
@@ -521,6 +541,7 @@ const StatCard = memo(({
         ${getBorderClasses(position)}
         ${isLarge ? 'col-span-2 sm:col-span-2 lg:col-span-2 h-full' : 'h-64'}
         ${hoverEffect}
+        ${variantClasses}
         group
       `}
       role="article"
