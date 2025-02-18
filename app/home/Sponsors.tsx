@@ -16,7 +16,7 @@ const sponsors: Sponsor[] = [
     logo: '/wedo.jpg',
     description: 'Partners who contribute to the development, design, or maintenance of our website.',
     category: 'Website Partner',
-  }
+  },
 ];
 
 const Sponsors = () => {
@@ -52,7 +52,7 @@ const Sponsors = () => {
                       <h2 className="text-lg sm:text-xl font-mono font-bold text-white">
                         {sponsor.name}
                       </h2>
-                      <span className="px-2 sm:px-3 py-1 text-xs sm:text-sm rounded-full bg-black/20">
+                      <span className="px-2 sm:px-3 py-1 text-xs sm:text-sm rounded-full bg-black/20 text-white">
                         {sponsor.category}
                       </span>
                     </div>
