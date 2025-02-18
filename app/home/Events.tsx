@@ -14,31 +14,31 @@ const categoryBackgrounds = {
 
 const eventsData = {
   Robotics: [
-    { title: 'Line Follower', description: 'Build and program robots that can follow paths autonomously', image: '/Events/robot/LFr.jpg' },
-    { title: 'Micro Mouse', description: 'Create tiny robots that can solve complex mazes', image: '/Events/robot/micromouse.jpg' },
-    { title: 'Robowars', description: 'Design battle robots and compete in intense matches', image: '/Events/robot/robowars.jpg' },
-    { title: 'Robo Soccer', description: 'Program robots to play soccer in teams', image: '/Events/robot/robosoccer.jpg' },
-    { title: 'Custom', description: 'A custome soccer game.', image: '/Events/robot/robosoccer.jpg' }
+    { title: 'Line Follower', description: 'Precision on track, speed in control. Follow the line, claim the win.', image: '/Events/robot/LFr.jpg' },
+    { title: 'Micro Mouse', description: 'Maze of twists, turns, and tech. Smartest bot finds the fastest path.', image: '/Events/robot/micromouse.jpg' },
+    { title: 'Robowars', description: 'Sparks fly, metal collides. One bot stands, the rest fall.', image: '/Events/robot/robowars.jpg' },
+    { title: 'Robo Soccer', description: 'Robots, goals, and endless thrill. Score, defend, and dominate the field.', image: '/Events/robot/robosoccer.jpg' },
+    { title: 'Custom', description: 'Build beyond boundaries, innovate with flair. Your bot, your vision, your victory', image: '/Events/robot/robosoccer.jpg' }
   ],
   Tech: [
     { title: 'Hackathon', description: 'Build innovative solutions in 24 hours', image: '/Events/tech/hashhacks.png' },
-    { title: 'Tech Talks', description: 'Learn from industry experts and thought leaders', image: '/Events/tech/techtalks.png' },
-    { title: 'Competitive Programming', description: 'Solve complex problems under time pressure', image: '/Events/tech/competitiveprogramming.jpg' }
+    { title: 'Tech Talks', description: "Insights from tech's brightest minds. Learn today, lead tomorrow.", image: '/Events/tech/techtalks.png' },
+    { title: 'Competitive Programming', description: 'Logic, speed, and problem-solving grit. Crack the code, conquer the challenge', image: '/Events/tech/competitiveprogramming.jpg' }
   ],
   Gaming: [
-    { title: 'FC25', description: 'Compete in the ultimate football gaming championship', image: '/Events/gaming/fifa.jpg' },
-    { title: 'Mortal Kombat', description: 'Test your fighting game skills', image: '/Events/gaming/mortal.jpg' },
-    { title: 'Mini Militia', description: 'Join the ground.', image: '/Events/gaming/minimilitia.jpg' },
-    { title: 'Tekken', description: 'Challenge for the arcade.', image: '/Events/gaming/tekken.jpg' }
+    { title: 'FC25', description: 'Virtual pitch, real excitement. Master the game, score the glory.', image: '/Events/gaming/fifa.jpg' },
+    { title: 'Mortal Kombat', description: 'Fight with skill, finish with flair. Only the strongest survive.', image: '/Events/gaming/mortal.jpg' },
+    { title: 'Mini Militia', description: 'Fast, fun, and fiercely competitive. Survive the chaos, dominate the battlefield.', image: '/Events/gaming/minimilitia.jpg' },
+    { title: 'Tekken', description: 'Precision, power, and perfect combos. Fight hard, win harder.', image: '/Events/gaming/tekken.jpg' }
   ],
   Misc: [
-    { title: 'Biz Tech', description: 'Solve real-world business cases with technology', image: '/Events/extras/biztech.jpeg' },
-    { title: 'Treasure Hunt', description: 'Navigate through technical clues and puzzles', image: '/Events/extras/treasurehunt.jpg' },
-    { title: 'Sports Quiz', description: 'Trade virtual stocks and learn market dynamics', image: '/Events/extras/sportsquiz.jpg' },
-    { title: 'General Quiz', description: 'Trade virtual stocks and learn market dynamics', image: '/Events/extras/GK.png' },
-    { title: 'Stock Market Simulator', description: 'Trade virtual stocks and learn market dynamics', image: '/Events/extras/stockmarket.jpeg' },
-    { title: 'Poker Bots', description: 'Trade virtual stocks and learn market dynamics', image: '/Events/extras/poker.jpg' },
-    { title: 'Case Study', description: 'Trade virtual stocks and learn market dynamics', image: '/Events/extras/casestudy.jpg' }
+    { title: 'Biz Tech', description: 'Business, tech, and a battle of wits. Answer smart, lead the charts.', image: '/Events/extras/biztech.jpeg' },
+    { title: 'Treasure Hunt', description: 'Clues, puzzles, and a race against time. Think fast, find faster.', image: '/Events/extras/treasurehunt.jpg' },
+    { title: 'Sports Quiz', description: 'From stadiums to scoreboards, test your game. Know the facts, claim the fame.', image: '/Events/extras/sportsquiz.jpg' },
+    { title: 'General Quiz', description: 'Curiosity meets competition. Answer right, win bright.', image: '/Events/extras/GK.png' },
+    { title: 'Stock Market Simulator', description: 'Trade, invest, and outsmart the market. Virtual stakes, real strategies.', image: '/Events/extras/stockmarket.jpeg' },
+    { title: 'Poker Bots', description: 'Bluff, bet, and build the best bot. AI meets high-stakes poker.', image: '/Events/extras/poker.jpg' },
+    { title: 'Case Study', description: 'Analyze, strategize, and present your edge. Real problems, smart solutions.', image: '/Events/extras/casestudy.jpg' }
   ]
 } as const;
 
