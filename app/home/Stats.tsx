@@ -414,9 +414,8 @@
 
 // export default Stats;
 
-
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 import { IconCloud } from "@/app/components/ui/icon-clouds";
 
 interface StatCardProps {
@@ -445,79 +444,89 @@ interface MovieStats {
   boxOfficeValue: string;
 }
 
-const AnimatedNumber: React.FC<{ value: string }> = ({ value }) => {
+// Memoized AnimatedNumber component
+const AnimatedNumber = memo(({ value }: { value: string }) => {
   const [displayValue, setDisplayValue] = useState("0");
-  const numericValue = parseInt(value.replace(/\D/g, ''));
 
   useEffect(() => {
+    const numericValue = parseInt(value.replace(/\D/g, '')) || 0;
     let start = 0;
     const end = numericValue;
     const duration = 2000;
     const increment = end / (duration / 16);
-    let timer: NodeJS.Timeout;
+    let animationFrameId: number;
 
     const updateNumber = () => {
       start += increment;
       if (start < end) {
         setDisplayValue(Math.floor(start).toString());
-        timer = setTimeout(updateNumber, 16);
+        animationFrameId = requestAnimationFrame(updateNumber);
       } else {
         setDisplayValue(value);
       }
     };
 
-    updateNumber();
-    return () => clearTimeout(timer);
+    animationFrameId = requestAnimationFrame(updateNumber);
+
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
   }, [value]);
 
   return <span>{displayValue}</span>;
+});
+
+AnimatedNumber.displayName = 'AnimatedNumber';
+
+// Utility functions
+const getBorderClasses = (position: StatCardProps['position']): string => {
+  switch (position) {
+    case 'left':
+      return 'md:border-r';
+    case 'middle':
+      return 'md:border-r';
+    default:
+      return '';
+  }
 };
 
-const getBorderClasses = (position: StatCardProps['position']) => {
-  return `
-    md:${position === 'left' ? 'border' : ''}
-    md:${position === 'middle' ? 'border' : ''}
-  `;
+const getHoverEffect = (variant: StatCardProps['variant']): string => {
+  const baseEffect = 'hover:shadow-lg hover:shadow-[#006462]/10';
+  return baseEffect;
 };
 
-const getHoverEffect = (variant: StatCardProps['variant']) => {
-  const effects = {
-    date: 'hover:shadow-lg',
-    footfall: 'hover:shadow-lg',
-    prizes: 'hover:shadow-lg',
-    eventDates: 'hover:shadow-lg',
-    edition: 'hover:shadow-lg',
-    events: 'hover:shadow-lg',
-    sponsors: 'hover:shadow-lg'
-  };
-  return effects[variant];
-};
-
-const StatCard: React.FC<StatCardProps> = ({ 
+// Memoized StatCard component
+const StatCard = memo(({ 
   title, 
   subtitle, 
   isLarge = false,
   variant,
   position,
   children 
-}) => {
+}: StatCardProps) => {
   const isNumeric = title ? /^\$?\d/.test(title) : false;
   const hoverEffect = getHoverEffect(variant);
 
   return (
-    <div className={`
-      bg-black/20 p-8 text-[#006462] 
-      flex flex-col items-center justify-between
-      border-gray-200
-      relative
-      backdrop-blur-sm
-      transform transition-all duration-500 ease-in-out
-      ${getBorderClasses(position)}
-      ${isLarge ? 'col-span-2 sm:col-span-2 lg:col-span-2 h-full' : 'h-64'}
-      ${hoverEffect}
-      group
-    `}>
-      <div className="absolute inset-0 bg-black"/>
+    <div 
+      className={`
+        bg-black/20 p-8 text-[#006462] 
+        flex flex-col items-center justify-between
+        border-gray-200
+        relative
+        backdrop-blur-sm
+        transform transition-all duration-500 ease-in-out
+        ${getBorderClasses(position)}
+        ${isLarge ? 'col-span-2 sm:col-span-2 lg:col-span-2 h-full' : 'h-64'}
+        ${hoverEffect}
+        group
+      `}
+      role="article"
+      aria-label={`${subtitle} statistics`}
+    >
+      <div className="absolute inset-0 bg-black" aria-hidden="true" />
       {title && (
         <span className={`
           ${isLarge ? 'text-6xl' : 'text-4xl'} 
@@ -541,35 +550,28 @@ const StatCard: React.FC<StatCardProps> = ({
       </span>
     </div>
   );
-};
+});
 
-// const slugs = [
-//   "typescript", "javascript", "dart", "java", "react", "flutter", "android", 
-//   "html5", "css3", "nodedotjs", "express", "nextdotjs", "prisma", "amazonaws", 
-//   "postgresql", "firebase", "nginx", "vercel", "testinglibrary", "jest", 
-//   "cypress", "docker", "git", "jira", "github", "gitlab", "visualstudiocode", 
-//   "androidstudio", "sonarqube", "figma"
-// ];
+StatCard.displayName = 'StatCard';
 
-// const Stats: React.FC = () => {
-//   const images = slugs.map(
-//     (slug) => `https://cdn.simpleicons.org/${slug}`,
-//   );
-
-
+// Constants
 const slugs = [
-  "Oyo Rooms", "Domino`s Pizza Icon", "Wolfram Alpha 2022", "microsoft-svgrepo-com","cblogo", "hacksociety", "JetBrains", "Jarvis", "Monster Energy","DUbeat", "mifos_lg-logo",
-  "RedBull", "HackerEarth", "CodingBlocks", "DUExpress", "gfg-new-logo", "logo_new"
+  "Oyo Rooms", "Domino`s Pizza Icon", "Wolfram Alpha 2022", "microsoft-svgrepo-com",
+  "cblogo", "hacksociety", "JetBrains", "Jarvis", "Monster Energy", "DUbeat",
+  "mifos_lg-logo", "RedBull", "HackerEarth", "CodingBlocks", "DUExpress",
+  "gfg-new-logo", "logo_new"
 ];
 
+// Main Stats component
 const Stats: React.FC = () => {
   const images = slugs.map((slug) => `/icons/${slug}.svg`);
+  
   const stats: MovieStats = {
     releaseYear: "2015",
     releaseDate: "1st edition",
     title: "1000+",
     storyBy: "Past footfalls",
-    prizes: "50K",
+    prizes: "1.5 lacs",
     production: "Prizes worth",
     eventDates: "20-22 March",
     distributedBy: "Events dates",
@@ -581,6 +583,17 @@ const Stats: React.FC = () => {
     boxOfficeValue: "Past Sponsors"
   };
 
+  // Memoized IconCloud wrapper
+  const SponsorsCloud = memo(() => (
+    <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
+      <div className="scale-[1.75]">
+        <IconCloud images={images} />
+      </div>
+    </div>
+  ));
+  
+  SponsorsCloud.displayName = 'SponsorsCloud';
+
   return (
     <div className="relative h-full">
       {/* Mobile layout */}
@@ -591,22 +604,15 @@ const Stats: React.FC = () => {
         <StatCard title={stats.eventDates} subtitle={stats.distributedBy} variant="eventDates" position="right" />
         <StatCard title={stats.edition} subtitle={stats.budgetValue} variant="edition" position="left" />
         <StatCard title={stats.events} subtitle={stats.musicBy} variant="events" position="middle" />
-
-        {/* Sponsors Card - Mobile */}
         <div className="col-span-2 row-span-2">
-          <StatCard subtitle={stats.boxOfficeValue} variant="sponsors" position="right" isLarge={true}>
-          <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
-            <div className="scale-[1.75]">
-              <IconCloud images={images} />
-            </div>
-          </div>
+          <StatCard subtitle={stats.boxOfficeValue} variant="sponsors" position="right" isLarge>
+            <SponsorsCloud />
           </StatCard>
         </div>
       </div>
 
-      {/* Desktop layout with 5 columns & 2 rows */}
+      {/* Desktop layout */}
       <div className="hidden md:grid md:grid-cols-5 md:grid-rows-2 gap-[1px] bg-white/20 auto-rows-[256px]">
-        {/* First row - 3 cards */}
         <div className="col-span-1">
           <StatCard title={stats.releaseYear} subtitle={stats.releaseDate} variant="date" position="left" />
         </div>
@@ -616,19 +622,11 @@ const Stats: React.FC = () => {
         <div className="col-span-1">
           <StatCard title={stats.prizes} subtitle={stats.production} variant="prizes" position="middle" />
         </div>
-
-        {/* Sponsors Card (2x2 span) */}
         <div className="col-span-2 row-span-2">
-          <StatCard subtitle={stats.boxOfficeValue} variant="sponsors" position="right" isLarge={true}>
-          <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
-            <div className="scale-[1.75]">
-              <IconCloud images={images} />
-            </div>
-          </div>
+          <StatCard subtitle={stats.boxOfficeValue} variant="sponsors" position="right" isLarge>
+            <SponsorsCloud />
           </StatCard>
         </div>
-
-        {/* Second row - 3 cards */}
         <div className="col-span-1">
           <StatCard title={stats.eventDates} subtitle={stats.distributedBy} variant="eventDates" position="left" />
         </div>
@@ -643,4 +641,4 @@ const Stats: React.FC = () => {
   );
 };
 
-export default Stats;
+export default memo(Stats);

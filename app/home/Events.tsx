@@ -1,6 +1,7 @@
 'use client'
 import { useState, useRef } from 'react';
 import { ChevronRight, ChevronLeft, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 const categories = ['Robot', 'Tech', 'Gaming', 'Misc'] as const;
 
@@ -55,15 +56,16 @@ const Events = () => {
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Background Image with Black Fade */}
-      <div 
-        className="absolute inset-0 transition-transform duration-1000 ease-out transform scale-100"
-        style={{
-          backgroundImage: `url(${categoryBackgrounds[activeCategory]})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          filter: 'brightness(0.3)',
-        }}
-      />
+      <div className="absolute inset-0 transition-transform duration-1000 ease-out transform scale-100">
+        <Image
+          src={categoryBackgrounds[activeCategory]}
+          alt={`${activeCategory} background`}
+          fill
+          className="object-cover"
+          priority
+          style={{ filter: 'brightness(0.3)' }}
+        />
+      </div>
       <div className="absolute inset-0 bg-gradient-to-b backdrop-blur-sm from-black/50 via-transparent to-black/50"></div>
 
       <div className="relative z-10 px-4 py-12">
@@ -113,11 +115,14 @@ const Events = () => {
                 <div 
                   className="h-[28rem] rounded-xl overflow-hidden shadow-lg transition-all duration-500 bg-white/10 hover:shadow-[#48D1CC]/30 hover:scale-105"
                 >
-                  <img 
-                    src={event.image} 
-                    alt={event.title} 
-                    className="w-full h-48 object-cover"
-                  />
+                  <div className="relative w-full h-48">
+                    <Image 
+                      src={event.image} 
+                      alt={event.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                   <div className="p-6 flex flex-col justify-between h-[calc(100%-12rem)] w-full max-w-[90%] sm:max-w-md mx-auto">
                     <div>
                       <h3 className="text-2xl font-bold text-white mb-2 font-mono">
