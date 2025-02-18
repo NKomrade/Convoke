@@ -5,6 +5,12 @@ import { AnimatedTestimonials } from '../components/ui/animated-testimonials';
 
 const testimonials = [
   {
+    quote: "Meow Meow, Meow Meow... Meow Meow, Meow Meow Meowwwwwww",
+    name: "Billa Bond",
+    designation: "Mascott",
+    src: "/Team/BillaBond.png"
+  },
+  {
     quote: "I told you, I don't want to join your super-secret boy band.",
     name: "Arjun Gupta",
     designation: "Core Team",
@@ -51,18 +57,6 @@ const testimonials = [
     name: "Saswat Susmoy Sahoo",
     designation: "Design Head",
     src: "/Team/Susmoy.jpg"
-  },
-  {
-    quote: "Creativity takes courage, and innovation makes it impactful.",
-    name: "Sourav Kumar Verma",
-    designation: "Design Team",
-    src: "/Team/Sourav.jpg"
-  },
-  {
-    quote: "Meow Meow, Meow Meow... Meow Meow, Meow Meow Meowwwwwww",
-    name: "Billa Bond",
-    designation: "Mascott",
-    src: "/Team/BillaBond.png"
   }
 ];
 
