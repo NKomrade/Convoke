@@ -68,7 +68,7 @@ const testimonials = [
 const Team = () => {
   return (
     <div className="overflow-hidden mt-10">
-      <h2 className="md:text-5xl text-4xl font-bold text-center">Meet Our Team</h2>
+      <h2 className="md:text-5xl text-4xl font-bold text-center text-white">Meet Our Team</h2>
       <div className="md:scale-[1.15] scale-[0.85]">
         <AnimatedTestimonials testimonials={testimonials} autoplay={true} />
       </div>

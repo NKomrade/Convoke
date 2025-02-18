@@ -414,6 +414,8 @@
 
 // export default Stats;
 
+
+
 'use client'
 import React, { useState, useEffect, memo } from 'react';
 import { IconCloud } from "@/app/components/ui/icon-clouds";
@@ -425,6 +427,8 @@ interface StatCardProps {
   variant: 'date' | 'footfall' | 'prizes' | 'eventDates' | 'edition' | 'events' | 'sponsors';
   position: 'left' | 'middle' | 'right';
   children?: React.ReactNode;
+  hoverBgImage?: string;
+  rollingNumbers?: boolean;
 }
 
 interface MovieStats {
@@ -444,65 +448,52 @@ interface MovieStats {
   boxOfficeValue: string;
 }
 
-// Memoized AnimatedNumber component
-const AnimatedNumber = memo(({ value }: { value: string }) => {
-  const [displayValue, setDisplayValue] = useState("0");
+// Rolling Numbers Animation Component (Triggers on Hover)
+const AnimatedNumber = memo(({ value, isHovered }: { value: string, isHovered: boolean }) => {
+  const [displayValue, setDisplayValue] = useState(value);
 
   useEffect(() => {
-    const numericValue = parseInt(value.replace(/\D/g, '')) || 0;
-    let start = 0;
-    const end = numericValue;
-    const duration = 2000;
-    const increment = end / (duration / 16);
-    let animationFrameId: number;
+    if (!isHovered) {
+      setDisplayValue(value); // Reset to original value when hover is removed
+      return;
+    }
 
-    const updateNumber = () => {
-      start += increment;
-      if (start < end) {
-        setDisplayValue(Math.floor(start).toString());
-        animationFrameId = requestAnimationFrame(updateNumber);
+    const digits = value.split("").map((char) => (/\d/.test(char) ? parseInt(char, 10) : char)); 
+    const maxIterations = 20;
+    const animationDuration = 800; 
+    const intervalTime = animationDuration / maxIterations;
+    let frame = 0;
+
+    const updateDigits = () => {
+      frame++;
+      const newDisplay = digits.map((char) => {
+        if (typeof char === "number") {
+          return Math.floor(Math.random() * 10); 
+        }
+        return char; 
+      });
+
+      setDisplayValue(newDisplay.join(""));
+
+      if (frame < maxIterations) {
+        setTimeout(updateDigits, intervalTime);
       } else {
-        setDisplayValue(value);
+        setDisplayValue(value); // Restore original value after rolling ends
       }
     };
 
-    animationFrameId = requestAnimationFrame(updateNumber);
-
-    return () => {
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
-    };
-  }, [value]);
+    updateDigits();
+  }, [isHovered, value]);
 
   return <span>{displayValue}</span>;
 });
 
 AnimatedNumber.displayName = 'AnimatedNumber';
 
+
 // Utility functions
 const getBorderClasses = (position: StatCardProps['position']): string => {
-  switch (position) {
-    case 'left':
-      return 'md:border-r';
-    case 'middle':
-      return 'md:border-r';
-    default:
-      return '';
-  }
-};
-
-const getHoverEffect = (variant: StatCardProps['variant']): string => {
-  switch (variant) {
-    case 'sponsors':
-      return 'hover:shadow-lg hover:shadow-[#006462]/20';
-    case 'prizes':
-      return 'hover:shadow-lg hover:shadow-[#006462]/15';
-    case 'footfall':
-      return 'hover:shadow-lg hover:shadow-[#006462]/15';
-    default:
-      return 'hover:shadow-lg hover:shadow-[#006462]/10';
-  }
+  return position === 'left' || position === 'middle' ? 'md:border-r' : '';
 };
 
 const getVariantSpecificClasses = (variant: StatCardProps['variant']): string => {
@@ -517,55 +508,73 @@ const getVariantSpecificClasses = (variant: StatCardProps['variant']): string =>
 };
 
 // Memoized StatCard component
-const StatCard = memo(({ 
-  title, 
-  subtitle, 
+const StatCard = memo(({
+  title,
+  subtitle,
   isLarge = false,
   variant,
   position,
-  children 
+  children,
+  hoverBgImage,
+  rollingNumbers = false,
 }: StatCardProps) => {
   const isNumeric = title ? /^\$?\d/.test(title) : false;
-  const hoverEffect = getHoverEffect(variant);
   const variantClasses = getVariantSpecificClasses(variant);
+  const [isHovered, setIsHovered] = useState(false); // Track hover state
 
   return (
-    <div 
+    <div
       className={`
-        bg-black/20 p-8 text-[#006462] 
-        flex flex-col items-center justify-between
-        border-gray-200
-        relative
-        backdrop-blur-sm
-        transform transition-all duration-500 ease-in-out
+        relative overflow-hidden bg-black/60 p-8 text-[#006462]
+        flex flex-col items-center justify-between border-gray-200
+        backdrop-blur-sm transform transition-all duration-500 ease-in-out
         ${getBorderClasses(position)}
         ${isLarge ? 'col-span-2 sm:col-span-2 lg:col-span-2 h-full' : 'h-64'}
-        ${hoverEffect}
         ${variantClasses}
         group
       `}
       role="article"
       aria-label={`${subtitle} statistics`}
+      onMouseEnter={() => setIsHovered(true)} // Start animation on hover
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="absolute inset-0 bg-black" aria-hidden="true" />
+      {/* Background Image (Hover Effect) */}
+      {hoverBgImage && (
+        <div
+          className="
+            absolute inset-0 bg-cover bg-center transition-all duration-700 ease-in-out
+            opacity-0 scale-110 translate-y-full group-hover:opacity-100 
+            group-hover:translate-y-0 group-hover:scale-100
+          "
+          style={{ backgroundImage: `url(${hoverBgImage})` }}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Overlay for readability */}
+      {hoverBgImage && <div className="absolute inset-0 bg-black/60 transition-opacity group-hover:bg-black/40"></div>}
+
+      {/* Content */}
       {title && (
         <span className={`
           ${isLarge ? 'text-6xl' : 'text-4xl'} 
-          font-bold font-mono mt-[50px]
-          w-full justify-center items-center text-center
-          transition-all duration-500
-          transform group-hover:translate-y-[-4px]
+          font-bold font-mono mt-[50px] w-full text-center
+          transition-all duration-500 transform group-hover:translate-y-[-4px]
+          relative z-10
         `}>
-          {isNumeric ? <AnimatedNumber value={title} /> : title}
+          {isNumeric && rollingNumbers ? (
+            <AnimatedNumber value={title} isHovered={isHovered} />
+          ) : (
+            title
+          )}
         </span>
       )}
       {children}
+
       <span className="
-        text-base font-mono text-gray-400 
-        self-start
-        transition-all duration-500
-        transform group-hover:translate-y-[-2px]
-        group-hover:text-gray-300
+        text-base font-mono text-gray-400 self-start 
+        transition-all duration-500 transform group-hover:translate-y-[-2px]
+        group-hover:text-gray-300 relative z-10
       ">
         {subtitle}
       </span>
@@ -573,20 +582,18 @@ const StatCard = memo(({
   );
 });
 
+
 StatCard.displayName = 'StatCard';
 
 // Constants
 const slugs = [
-  "Oyo Rooms", "Domino`s Pizza Icon", "Wolfram Alpha 2022", "microsoft-svgrepo-com",
-  "cblogo", "hacksociety", "JetBrains", "Jarvis", "Monster Energy", "DUbeat",
-  "mifos_lg-logo", "RedBull", "HackerEarth", "CodingBlocks", "DUExpress",
-  "gfg-new-logo", "logo_new"
+  "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"
 ];
 
 // Main Stats component
 const Stats: React.FC = () => {
   const images = slugs.map((slug) => `/icons/${slug}.svg`);
-  
+
   const stats: MovieStats = {
     releaseYear: "2015",
     releaseDate: "1st edition",
@@ -607,12 +614,12 @@ const Stats: React.FC = () => {
   // Memoized IconCloud wrapper
   const SponsorsCloud = memo(() => (
     <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
-      <div className="scale-[1.75]">
+      <div className="scale-[1.5]">
         <IconCloud images={images} />
       </div>
     </div>
   ));
-  
+
   SponsorsCloud.displayName = 'SponsorsCloud';
 
   return (
@@ -620,7 +627,13 @@ const Stats: React.FC = () => {
       {/* Mobile layout */}
       <div className="grid grid-cols-2 gap-[1px] bg-white/60 md:hidden">
         <StatCard title={stats.releaseYear} subtitle={stats.releaseDate} variant="date" position="left" />
-        <StatCard title={stats.title} subtitle={stats.storyBy} variant="footfall" position="middle" />
+        <StatCard
+          title="1000+"
+          subtitle="Past footfall"
+          variant="footfall"
+          position="middle"
+          hoverBgImage="/Team/Nitin.jpg"
+        />        
         <StatCard title={stats.prizes} subtitle={stats.production} variant="prizes" position="middle" />
         <StatCard title={stats.eventDates} subtitle={stats.distributedBy} variant="eventDates" position="right" />
         <StatCard title={stats.edition} subtitle={stats.budgetValue} variant="edition" position="left" />
@@ -635,27 +648,45 @@ const Stats: React.FC = () => {
       {/* Desktop layout */}
       <div className="hidden md:grid md:grid-cols-5 md:grid-rows-2 gap-[1px] bg-white/20 auto-rows-[256px]">
         <div className="col-span-1">
-          <StatCard title={stats.releaseYear} subtitle={stats.releaseDate} variant="date" position="left" />
+          <StatCard title={stats.releaseYear} subtitle={stats.releaseDate} variant="date" position="left" rollingNumbers/>
         </div>
         <div className="col-span-1">
-          <StatCard title={stats.title} subtitle={stats.storyBy} variant="footfall" position="middle" />
+        <StatCard
+          title="1000+"
+          subtitle="Past footfall"
+          variant="footfall"
+          position="middle"
+          hoverBgImage="/Team/Nitin.jpg"
+        /> 
         </div>
         <div className="col-span-1">
-          <StatCard title={stats.prizes} subtitle={stats.production} variant="prizes" position="middle" />
+          <StatCard title={stats.prizes} subtitle={stats.production} variant="prizes" position="middle" rollingNumbers/>
         </div>
         <div className="col-span-2 row-span-2">
-          <StatCard subtitle={stats.boxOfficeValue} variant="sponsors" position="right" isLarge>
+          <StatCard subtitle={stats.boxOfficeValue} variant="sponsors" position="right" isLarge hoverBgImage="/Team/Nitin.jpg">
             <SponsorsCloud />
           </StatCard>
         </div>
         <div className="col-span-1">
-          <StatCard title={stats.eventDates} subtitle={stats.distributedBy} variant="eventDates" position="left" />
+        <StatCard
+          title="20-22 March"
+          subtitle="Events Dates"
+          variant="eventDates"
+          position="left"
+          hoverBgImage="/Team/Nitin.jpg"
+        /> 
         </div>
         <div className="col-span-1">
-          <StatCard title={stats.edition} subtitle={stats.budgetValue} variant="edition" position="middle" />
+          <StatCard title={stats.edition} subtitle={stats.budgetValue} variant="edition" position="middle" rollingNumbers/>
         </div>
         <div className="col-span-1">
-          <StatCard title={stats.events} subtitle={stats.musicBy} variant="events" position="middle" />
+        <StatCard
+          title="25+"
+          subtitle="Events"
+          variant="events"
+          position="middle"
+          hoverBgImage="/Team/Nitin.jpg"
+        /> 
         </div>
       </div>
     </div>
