@@ -77,7 +77,7 @@ const Team = () => {
       {/* Bouncy Button at Bottom Right */}
       <div className="absolute bottom-28 right-6 md:right-28">
         <Link
-          href="https://notion.so/your-notion-link"
+          href="https://spiny-basil-be8.notion.site/19e80b7fb5c1801cb876f99dc117bbb8?v=19e80b7fb5c18188979e000c29360d9f"
           target="_blank"
           rel="noopener noreferrer"
           className="button-wrapper relative"

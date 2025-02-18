@@ -623,7 +623,7 @@ const Stats: React.FC = () => {
   SponsorsCloud.displayName = 'SponsorsCloud';
 
   return (
-    <div className="relative h-full">
+    <div className="relative h-full text-extrabold">
       {/* Mobile layout */}
       <div className="grid grid-cols-2 gap-[1px] bg-black/80 md:hidden">
         <StatCard title={stats.releaseYear} subtitle={stats.releaseDate} variant="date" position="left" rollingNumbers/>
