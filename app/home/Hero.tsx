@@ -284,7 +284,7 @@ export default function Hero() {
         {/* Bottom Right */}
         <div className="absolute bottom-4 right-4 font-mono text-xs text-[#006462]">
           <Martini className="w-4 h-4 mb-1 ml-auto" />
-          <div>A Martini. Shakened, Not Stirred.</div>
+          <div>A Martini. Shaken, Not Stirred.</div>
         </div>
 
         {/* Corner Accents */}
