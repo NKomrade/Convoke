@@ -262,27 +262,27 @@ export default function Hero() {
       {/* HUD Elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Top Left */}
-        <div className="absolute top-4 left-4 font-mono text-xs text-[#006462]">
+        <div className="absolute top-4 left-4 font-mono md:text-xs text-[9px] text-[#006462]">
           <div>SECURITY: ACTIVE</div>
           <div>ENCRYPTION: ENABLED</div>
           <div>CLEARANCE: LEVEL 7</div>
         </div>
 
         {/* Top Right */}
-        <div className="absolute top-4 right-4 font-mono text-xs text-[#006462] text-right">
+        <div className="absolute top-4 right-4 font-mono md:text-xs text-[9px] text-[#006462] text-right">
           <div>TIME: {time}</div>
           <div>LAT: {coordinates.y}°N</div>
           <div>LONG: {coordinates.x}°E</div>
         </div>
 
         {/* Bottom Left */}
-        <div className="absolute bottom-4 left-4 font-mono text-xs text-[#006462]">
+        <div className="absolute bottom-4 left-4 font-mono md:text-xs text-[9px] text-[#006462]">
           <Target className="w-4 h-4 mb-1" />
           <div>TARGET ACQUIRED</div>
         </div>
 
         {/* Bottom Right */}
-        <div className="absolute bottom-4 right-4 font-mono text-xs text-[#006462]">
+        <div className="absolute bottom-4 right-4 font-mono md:text-xs text-[9px] text-[#006462]">
           <Martini className="w-4 h-4 mb-1 ml-auto" />
           <div>A Martini. Shaken, Not Stirred.</div>
         </div>

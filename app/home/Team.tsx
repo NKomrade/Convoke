@@ -74,8 +74,8 @@ const Team = () => {
         <AnimatedTestimonials testimonials={testimonials} autoplay={true} />
       </div>
 
-      {/* Bouncy Button at Bottom Right */}
-      <div className="absolute bottom-28 right-6 md:right-28">
+      {/* Bouncy Button */}
+      <div className="hidden md:block absolute bottom-28 right-6 md:right-28">
         <Link
           href="https://spiny-basil-be8.notion.site/19e80b7fb5c1801cb876f99dc117bbb8?v=19e80b7fb5c18188979e000c29360d9f"
           target="_blank"
@@ -88,7 +88,43 @@ const Team = () => {
             style={{
               width: "168px",
               height: "40px",
-              top: "6px", 
+              top: "6px",
+              left: "6px",
+            }}
+          ></div>
+
+          {/* Button Content */}
+          <button className="button-content relative flex items-center justify-center rounded-full border-[2.5px] border-black bg-white transition-transform duration-300 active:scale-95">
+            <div
+              className="flex items-center justify-center rounded-full border-[2px] border-black"
+              style={{
+                width: "170px",
+                height: "42px",
+              }}
+            >
+              <span className="font-poppins text-[15px] font-[590] leading-[19.5px] text-black">
+                Our Team
+              </span>
+            </div>
+          </button>
+        </Link>
+      </div>
+
+      {/* Centered Button for Mobile */}
+      <div className="md:hidden flex justify-center mt-8">
+        <Link
+          href="https://spiny-basil-be8.notion.site/19e80b7fb5c1801cb876f99dc117bbb8?v=19e80b7fb5c18188979e000c29360d9f"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="button-wrapper relative"
+        >
+          {/* Black Shadow */}
+          <div
+            className="absolute inset-0 rounded-full bg-gradient-to-r from-[#006462] to-teal-600 button-shadow"
+            style={{
+              width: "168px",
+              height: "40px",
+              top: "6px",
               left: "6px",
             }}
           ></div>
@@ -114,5 +150,3 @@ const Team = () => {
 };
 
 export default Team;
-
-

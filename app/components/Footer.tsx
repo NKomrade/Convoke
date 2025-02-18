@@ -289,18 +289,57 @@ const Footer: React.FC = () => {
 
         {/* New Button Section */}
         <div className="flex justify-center gap-4 sm:gap-6 mb-6 sm:mb-8">
-          <button
-            onClick={() => setIsEmergencyModalOpen(true)}
-            className="px-6 py-4 bg-gradient-to-r from-[#006462] to-teal-600 rounded-lg text-white text-sm sm:text-base hover:from-teal-600 hover:to-[#006462] transition-all duration-300 transform hover:scale-105 shadow-lg"
-          >
-            Emergency Resources
-          </button>
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="px-6 py-2 bg-gradient-to-r from-[#006462] to-teal-600 rounded-lg text-white text-sm sm:text-base hover:from-teal-600 hover:to-[#006462] transition-all duration-300 transform hover:scale-105 shadow-lg"
-          >
-            Code of Conduct
-          </button>
+          {/* Emergency Resources Button */}
+          <div className="relative">
+            <div
+              className="absolute inset-0 rounded-full bg-gradient-to-r from-[#006462] to-teal-600 button-shadow"
+              style={{
+                width: "183px",
+                height: "40px",
+                top: "6px",
+                left: "6px",
+              }}  
+            ></div>
+            <button
+              onClick={() => setIsEmergencyModalOpen(true)}
+              className="button-content relative flex items-center justify-center rounded-full border-[2.5px] border-black bg-white transition-transform duration-300 active:scale-95"
+            >
+              <div
+                className="flex items-center justify-center rounded-full border-[2px] border-black"
+                style={{ width: "185px", height: "42px" }}
+              >
+                <span className="font-poppins text-[15px] font-[590] leading-[19.5px] text-black">
+                  Emergency Resources
+                </span>
+              </div>
+            </button>
+          </div>
+
+          {/* Code of Conduct Button */}
+          <div className="relative">
+            <div
+              className="absolute button-wrapper inset-0 rounded-full bg-gradient-to-r from-[#006462] to-teal-600 button-shadow"
+              style={{
+                width: "168px",
+                height: "40px",
+                top: "6px",
+                left: "6px",
+              }}  
+            ></div>
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="button-content relative flex items-center justify-center rounded-full border-[2.5px] border-black bg-white transition-transform duration-300 active:scale-95"
+            >
+              <div
+                className="flex items-center justify-center rounded-full border-[2px] border-black"
+                style={{ width: "170px", height: "42px" }}
+              >
+                <span className="font-poppins text-[15px] font-[590] leading-[19.5px] text-black">
+                  Code of Conduct
+                </span>
+              </div>
+            </button>
+          </div>
         </div>
 
         {/* Footer Bottom with Border */}
