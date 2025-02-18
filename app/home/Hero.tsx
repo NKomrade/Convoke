@@ -242,7 +242,7 @@ export default function Hero() {
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}
         >
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight text-center mb-4">
+          <h1 className="text-5xl md:text-8xl font-black text-white tracking-tight text-center mb-4">
             <span className="relative">CONVOKE</span>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#006462] to-[#006462]/50">2025</span>
           </h1>
