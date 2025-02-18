@@ -186,8 +186,6 @@ export default function Navbar() {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
-    let lastScrollY = window.scrollY;
-
     const handleScroll = () => {
       const sections = ['events', 'sponsors', 'gallery', 'team'];
       let currentSection = 'convoke';
@@ -227,7 +225,6 @@ export default function Navbar() {
         }
       }
 
-      lastScrollY = window.scrollY;
     };
 
     // Initial check for scroll position
