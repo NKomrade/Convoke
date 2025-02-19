@@ -149,7 +149,7 @@ export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
   const [time, setTime] = useState('00:00:00');
-  const [daysLeft, setDaysLeft] = useState(0);
+  const [daysLeft, setDaysLeft] = useState(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return; // Ensure it only runs on the client
@@ -170,10 +170,10 @@ export default function Hero() {
       setTime(now.toTimeString().split(' ')[0]);
 
       // Calculate days until March 20th, 2025
-      const targetDate = new Date('2025-03-20');
-      const timeDiff = targetDate.getTime() - now.getTime();
-      const daysRemaining = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-      setDaysLeft(daysRemaining);
+      // const targetDate = new Date('2025-03-20');
+      // const timeDiff = targetDate.getTime() - now.getTime();
+      // const daysRemaining = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+      setDaysLeft(null);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -249,7 +249,7 @@ export default function Hero() {
 
           {/* Days Left Counter */}
           <div className="text-2xl md:text-5xl font-bold text-[#006462] font-mono text-center mt-4 animate-pulse">
-            {daysLeft} DAYS REMAINING
+            {daysLeft} Coming Soon...
           </div>
         </div>
 

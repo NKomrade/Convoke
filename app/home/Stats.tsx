@@ -637,7 +637,7 @@ const Stats: React.FC = () => {
     storyBy: "Past footfall",
     prizes: "1.5 lacs",
     production: "Prizes worth",
-    eventDates: "20-22 March",
+    eventDates: "Coming Soon",
     distributedBy: "Events dates",
     edition: "007",
     budgetValue: "Current edition",
@@ -756,7 +756,7 @@ const Stats: React.FC = () => {
         </div>
         <div className="col-span-1">
           <StatCard
-            title="20-22 March"
+            title="Coming Soon"
             subtitle="Events Dates"
             variant="eventDates"
             position="left"
