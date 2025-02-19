@@ -674,7 +674,6 @@ const Stats: React.FC = () => {
           subtitle="Past footfall" 
           variant="footfall" 
           position="middle" 
-          hoverBgImage="/Team/Nitin.jpg"
         />
         <StatCard 
           title={stats.prizes} 
@@ -688,7 +687,6 @@ const Stats: React.FC = () => {
           subtitle={stats.distributedBy} 
           variant="eventDates" 
           position="right" 
-          hoverBgImage='/Team/Nitin.jpg'
         />
         <StatCard 
           title={stats.edition} 
@@ -702,7 +700,6 @@ const Stats: React.FC = () => {
           subtitle={stats.musicBy} 
           variant="events" 
           position="middle" 
-          hoverBgImage='/Team/Nitin.jpg'
         />
         <div className="col-span-2 row-span-2">
           <StatCard 

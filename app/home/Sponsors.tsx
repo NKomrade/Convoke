@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 
 type Sponsor = {
   name: string;
@@ -86,7 +85,7 @@ const Sponsors = () => {
             <div
               className="absolute inset-0 rounded-full bg-gradient-to-r from-[#006462] to-teal-600 button-shadow"
               style={{
-                width: "168px",
+                width: "178px",
                 height: "40px",
                 top: "6px",
                 left: "6px",
@@ -98,12 +97,12 @@ const Sponsors = () => {
               <div
                 className="flex items-center justify-center rounded-full border-[2px] border-black"
                 style={{
-                  width: "170px",
+                  width: "180px",
                   height: "42px",
                 }}
               >
                 <span className="font-poppins text-[15px] font-[590] leading-[19.5px] text-black">
-                  Wanna Cum...?
+                  Wish to Sponsor us?
                 </span>
               </div>
             </button>
