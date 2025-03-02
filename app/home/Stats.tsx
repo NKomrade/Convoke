@@ -637,7 +637,7 @@ const Stats: React.FC = () => {
     storyBy: "Past footfall",
     prizes: "1.5 lacs",
     production: "Prizes worth",
-    eventDates: "Coming Soon",
+    eventDates: "03-05 April",
     distributedBy: "Events dates",
     edition: "007",
     budgetValue: "Current edition",
