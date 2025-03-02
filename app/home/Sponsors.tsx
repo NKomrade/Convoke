@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 type Sponsor = {
   name: string;
@@ -60,11 +61,11 @@ const Sponsors = () => {
                       {sponsor.description}
                     </p>
 
-                    <div className="pt-3 sm:pt-4 transform translate-y-6 sm:translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <Link target='_blank' href='https://wedo-ebon.vercel.app' className="pt-3 sm:pt-4 transform translate-y-6 sm:translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                       <button className="w-full py-2 text-xs sm:text-sm rounded-lg border border-white/80 bg-black/50 text-white">
                         Learn More
                       </button>
-                    </div>
+                    </Link>
                   </div>
                 </div>
               </div>
