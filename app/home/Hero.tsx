@@ -149,7 +149,7 @@ export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
   const [time, setTime] = useState('00:00:00');
-  const [daysLeft, setDaysLeft] = useState(0);
+  const [daysLeft, setDaysLeft] = useState(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return; // Ensure it only runs on the client
@@ -248,7 +248,7 @@ export default function Hero() {
 
           {/* Days Left Counter */}
           <div className="text-2xl md:text-5xl font-bold text-[#006462] font-mono text-center mt-4 animate-pulse">
-            {daysLeft} DAYS REMAINING
+            {daysLeft} Coming Soon...
           </div>
         </div>
 
