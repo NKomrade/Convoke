@@ -245,7 +245,7 @@ export default function HomePage() {
                   <div>
                     <h3 className="text-[#006462] text-xl font-bold mb-2">Schedule</h3>
                     <p className="text-gray-300 space-y-2">
-                      The complete schedule is available on Convoke's website!
+                      The complete schedule is available on Convoke website!
                     </p>
                   </div>
                   <div>
