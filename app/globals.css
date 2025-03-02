@@ -67,3 +67,25 @@ body {
 .button-wrapper:active .button-content {
   transform: translate(4px, 6px);
 }
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #006462;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #004d4d;
+}
+
+/* For Firefox */
+* {
+  scrollbar-color: #006462 var(--background);
+}

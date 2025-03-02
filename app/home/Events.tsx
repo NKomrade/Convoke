@@ -18,8 +18,7 @@ const eventsData = {
     { title: 'Line Follower', description: 'Precision on track, speed in control. Follow the line, claim the win.', image: '/Events/robot/LFr.jpg', link: '/events/line-follower' },
     { title: 'Micro Mouse', description: 'Maze of twists, turns, and tech. Smartest bot finds the fastest path.', image: '/Events/robot/micromouse.jpg', link: '/events/micro-mouse' },
     { title: 'Robowars', description: 'Sparks fly, metal collides. One bot stands, the rest fall.', image: '/Events/robot/robowars.jpg', link: '/events/robowars' },
-    { title: 'Robo Soccer', description: 'Robots, goals, and endless thrill. Score, defend, and dominate the field.', image: '/Events/robot/robosoccer.jpg', link: '/events/robo-soccer' },
-    { title: 'Custom', description: 'Build beyond boundaries, innovate with flair. Your bot, your vision, your victory', image: '/Events/robot/robosoccer.jpg', link: '/events/custom' }
+    { title: 'Robo Soccer', description: 'Robots, goals, and endless thrill. Score, defend, and dominate the field.', image: '/Events/robot/robosoccer.jpg', link: '/events/robo-soccer' }
   ],
   Tech: [
     { title: 'Hackathon', description: 'Build innovative solutions in 24 hours', image: '/Events/tech/hashhacks.png', link: '/events/hackathon' },
@@ -27,7 +26,7 @@ const eventsData = {
     { title: 'Competitive Programming', description: 'Logic, speed, and problem-solving grit. Crack the code, conquer the challenge', image: '/Events/tech/competitiveprogramming.jpg', link: '/events/competitive-programming' }
   ],
   Gaming: [
-    { title: 'FC25', description: 'Virtual pitch, real excitement. Master the game, score the glory.', image: '/Events/gaming/fifa.jpg', link: '/events/fc25' },
+    { title: 'FC24', description: 'Virtual pitch, real excitement. Master the game, score the glory.', image: '/Events/gaming/fc24.jpg', link: '/events/fc25' },
     { title: 'Mortal Kombat', description: 'Fight with skill, finish with flair. Only the strongest survive.', image: '/Events/gaming/mortal.jpg', link: '/events/mortal-kombat' },
     { title: 'Mini Militia', description: 'Fast, fun, and fiercely competitive. Survive the chaos, dominate the battlefield.', image: '/Events/gaming/minimilitia.jpg', link: '/events/mini-militia' },
     { title: 'Tekken', description: 'Precision, power, and perfect combos. Fight hard, win harder.', image: '/Events/gaming/tekken.jpg', link: '/events/tekken' }
@@ -35,6 +34,8 @@ const eventsData = {
   Misc: [
     { title: 'Biz Tech', description: 'Business, tech, and a battle of wits. Answer smart, lead the charts.', image: '/Events/extras/biztech.jpeg', link: '/events/biz-tech' },
     { title: 'Treasure Hunt', description: 'Clues, puzzles, and a race against time. Think fast, find faster.', image: '/Events/extras/treasurehunt.jpg', link: '/events/treasure-hunt' },
+    { title: 'Escape Room', description: 'Get ready for a thrill-packed challenge with puzzles and hidden clues! Can you crack the codes and escape in time?', image: '/Events/extras/escaperoom.jpg', link: '/events/escape-room' },
+    { title: 'Anime Quiz', description: 'Test your anime knowledge with thrilling questions and hidden clues! Are you the ultimate otaku who can ace this quiz?', image: '/Events/extras/Anime.jpg', link: '/events/anime' },
     { title: 'Sports Quiz', description: 'From stadiums to scoreboards, test your game. Know the facts, claim the fame.', image: '/Events/extras/sportsquiz.jpg', link: '/events/sports-quiz' },
     { title: 'General Quiz', description: 'Curiosity meets competition. Answer right, win bright.', image: '/Events/extras/GK.png', link: '/events/general-quiz' },
     { title: 'Stock Market Simulator', description: 'Trade, invest, and outsmart the market. Virtual stakes, real strategies.', image: '/Events/extras/stockmarket.jpeg', link: '/events/stock-market-simulator' },
@@ -101,7 +102,7 @@ const Events = () => {
         <div className="relative group">
           <button
             onClick={() => scroll('left')}
-            className="absolute -left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 rounded-full p-3 opacity-0 group-hover:opacity-100 transition-all duration-300"
+            className="absolute -left-4 top-1/2 z-10 -translate-y-1/2 bg-black/50 hover:bg-black/70 rounded-full p-3 opacity-0 group-hover:opacity-100 transition-all duration-300"
           >
             <ChevronLeft className="text-white w-6 h-6" />
           </button>
@@ -113,7 +114,7 @@ const Events = () => {
             {eventsData[activeCategory].map((event, index) => (
               <div key={index} className="relative flex-shrink-0 w-96 group/card">
                 <div
-                  className="h-[28rem] rounded-xl overflow-hidden shadow-lg transition-all duration-500 bg-white/10 hover:shadow-[#48D1CC]/30 hover:translate-y-5 z-20"
+                  className="h-[28rem] rounded-xl overflow-hidden shadow-lg transition-all duration-500 bg-black hover:shadow-[#48D1CC]/30 hover:translate-y-5 z-20"
                 >
                   <div className="relative w-full h-48">
                     <Image

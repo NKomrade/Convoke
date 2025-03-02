@@ -7,7 +7,7 @@ const testimonials = [
   {
     quote: "Meow Meow, Meow Meow... Meow Meow, Meow Meow Meowwwwwww",
     name: "Billa Bond",
-    designation: "Mascott",
+    designation: "Mascot",
     src: "/Team/BillaBond.png"
   },
   {

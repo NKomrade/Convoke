@@ -490,7 +490,7 @@ AnimatedNumber.displayName = 'AnimatedNumber';
 
 // Utility functions
 const getBorderClasses = (position: StatCardProps['position']): string => {
-  return position === 'left' || position === 'middle' ? 'md:border-r' : '';
+  return position === 'left' || position === 'middle' ? '' : '';
 };
 
 const getVariantSpecificClasses = (variant: StatCardProps['variant']): string => {
@@ -661,7 +661,7 @@ const Stats: React.FC = () => {
   return (
     <div className="relative h-full text-extrabold">
       {/* Mobile layout */}
-      <div className="grid grid-cols-2 gap-[1px] bg-black/80 md:hidden">
+      <div className="grid grid-cols-2 gap-[1px] bg-white/20 md:hidden">
         <StatCard 
           title={stats.releaseYear} 
           subtitle={stats.releaseDate} 
@@ -753,7 +753,7 @@ const Stats: React.FC = () => {
         </div>
         <div className="col-span-1">
           <StatCard
-            title="20-22 March"
+            title="03-05 April"
             subtitle="Events Dates"
             variant="eventDates"
             position="left"

@@ -14,7 +14,7 @@ interface EmergencyModalProps {
 
 const emergencyResources: EmergencyResource[] = [
   { title: 'Disaster Helpline', contact: '1077' },
-  { title: 'Women Helpline', contact: '1091, +91 8860022690' },
+  { title: 'Women Helpline', contact: '1091' },
   { title: 'Child Helpline', contact: '1098' },
   { title: 'Emergency Response Support System', contact: '112' },
   { title: 'Police', contact: '100' },
@@ -69,7 +69,7 @@ const EmergencyResourcesModal: React.FC<EmergencyModalProps> = ({ isOpen, onClos
             {emergencyResources.map((resource, index) => (
               <div 
                 key={index} 
-                className="p-4"
+                className=""
               >
                 <h4 className="font-semibold text-teal-300 mb-2">{resource.title}</h4>
                 <p className="text-white font-medium">{resource.contact}</p>

@@ -1,6 +1,7 @@
 // app/page.tsx
 import Hero from "@/app/home/Hero";
 import Stats from "@/app/home/Stats";
+// import Schedule from "@/app/home/Schedule";
 import Events from "@/app/home/Events";
 import Sponsors from "@/app/home/Sponsors";
 import Gallery from "@/app/home/Gallery";

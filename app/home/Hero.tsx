@@ -169,8 +169,7 @@ export default function Hero() {
       const now = new Date();
       setTime(now.toTimeString().split(' ')[0]);
 
-      // Calculate days until March 20th, 2025
-      const targetDate = new Date('2025-03-20');
+      const targetDate = new Date('2025-04-03');
       const timeDiff = targetDate.getTime() - now.getTime();
       const daysRemaining = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
       setDaysLeft(daysRemaining);
