@@ -139,6 +139,147 @@
 //     </div>
 //   );
 // }
+// 'use client'
+// import { useEffect, useState } from "react";
+
+// export default function Hero() {
+//   const [windowWidth, setWindowWidth] = useState(0);
+
+//   useEffect(() => {
+//     setWindowWidth(window.innerWidth);
+//     const handleResize = () => {
+//       setWindowWidth(window.innerWidth);
+//     };
+
+//     window.addEventListener("resize", handleResize);
+//     return () => {
+//       window.removeEventListener("resize", handleResize);
+//     };
+//   }, []);
+
+//   return (
+//     <div>
+//       <div
+//         className="w-full bg-center relative"
+//         style={{
+//           backgroundImage: `url('/static/video.mp4')`,
+//           backgroundRepeat: 'no-repeat',
+//           backgroundSize: windowWidth <= 768 ? 'cover' : '100%',
+//           backgroundAttachment: 'fixed',
+//           height: '100vh',
+//         }}
+//       >
+//         {/* Overlay */}
+//         <div className="absolute top-0 left-0 right-0 h-full bg-black/60" />
+//         <div
+//           className="absolute top-0 left-0 right-0 h-full"
+//           style={{
+//             background: "radial-gradient(circle at center, transparent 20%, rgba(0,0,0,0.8) 100%)",
+//           }}
+//         />
+
+//         {/* Content */}
+//         <div className="absolute top-0 left-0 right-0 flex flex-col items-center justify-center h-full z-10 px-4">
+//           <h1 className="text-5xl sm:text-5xl md:text-6xl lg:text-8xl font-black text-white tracking-tight text-center font-sans">
+//             Convoke 2025
+//           </h1>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+// 'use client'
+// import { useEffect, useState } from "react";
+
+// export default function Hero() {
+//   const [offsetY, setOffsetY] = useState(0);
+//   const [isVisible, setIsVisible] = useState(false);
+
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       setOffsetY(window.scrollY * 0.5);
+//     };
+
+//     window.addEventListener("scroll", handleScroll);
+//     setIsVisible(true); // Trigger animation on mount
+
+//     return () => {
+//       window.removeEventListener("scroll", handleScroll);
+//     };
+//   }, []);
+
+//   return (
+//     <div className="relative w-full h-screen overflow-hidden">
+//       {/* Animated Background Grid */}
+//       <div className="absolute inset-0 opacity-20">
+//         <div className="absolute inset-0" 
+//              style={{
+//                backgroundImage: `linear-gradient(to right, #ffffff 1px, transparent 1px),
+//                                 linear-gradient(to bottom, #ffffff 1px, transparent 1px)`,
+//                backgroundSize: '50px 50px',
+//              }} />
+//       </div>
+
+//       {/* Background Video with Parallax Effect */}
+//       <video
+//         className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
+//         src="/static/video2.mp4"
+//         autoPlay
+//         loop
+//         muted
+//         playsInline
+//         style={{
+//           transform: `translateY(${offsetY}px)`,
+//         }}
+//       />
+
+//       {/* Enhanced Overlay with Tech-inspired Gradient */}
+//       <div className="absolute top-0 left-0 w-full h-full" />
+//       <div
+//         className="absolute top-0 left-0 w-full h-full"
+//       />
+
+//       {/* Animated Lines */}
+//       <div className="absolute inset-0 overflow-hidden">
+//         <div className="absolute h-px w-full bg-gradient-to-r from-transparent via-green-500 to-transparent top-1/4 animate-[slide-right_3s_ease-in-out_infinite]" />
+//         <div className="absolute h-px w-full bg-gradient-to-r from-transparent via-green-500 to-transparent top-3/4 animate-[slide-left_3s_ease-in-out_infinite]" />
+//       </div>
+
+//       {/* Content */}
+//       <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center z-10 px-4">
+//         <div className={`transform transition-all duration-1000 ${
+//           isVisible 
+//             ? 'translate-y-0 opacity-100' 
+//             : 'translate-y-10 opacity-0'
+//         }`}>
+//           <h1 className="text-5xl sm:text-5xl md:text-6xl lg:text-8xl font-black text-green-500 tracking-tight font-mono text-center mb-4 relative">
+//             <span className="relative inline-block">
+//               <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600">
+//                 Convoke 2025
+//               </span>
+//               <span className="absolute -inset-0.5 bg-gradient-to-r from-green-600 to-green-800 blur opacity-30 animate-pulse" />
+//             </span>
+//           </h1>
+          
+//           {/* Animated Subtitle */}
+//           <p className={`text-lg md:text-xl text-green-400 text-center font-mono opacity-0 transform transition-all duration-1000 delay-500 ${
+//             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+//           }`}>
+//             &lt; 007 /&gt;
+//           </p>
+//         </div>
+//       </div>
+
+//       {/* Tech Accent Elements */}
+//       <div className="absolute bottom-0 left-0 w-full p-4 flex justify-between text-green-500/30 font-mono text-sm">
+//         <div>SYSTEM_ACTIVE: TRUE</div>
+//         <div>INIT_SEQUENCE: COMPLETE</div>
+//       </div>
+//     </div>
+//   );
+// }
 
 'use client';
 import { useEffect, useState } from 'react';
@@ -149,7 +290,7 @@ export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
   const [time, setTime] = useState('00:00:00');
-  const [daysLeft, setDaysLeft] = useState(null);
+  const [daysLeft, setDaysLeft] = useState(0);
 
   useEffect(() => {
     if (typeof window === 'undefined') return; // Ensure it only runs on the client
@@ -248,7 +389,7 @@ export default function Hero() {
 
           {/* Days Left Counter */}
           <div className="text-2xl md:text-5xl font-bold text-[#006462] font-mono text-center mt-4 animate-pulse">
-            {daysLeft} Coming Soon...
+            {daysLeft} DAYS REMAINING
           </div>
         </div>
 
