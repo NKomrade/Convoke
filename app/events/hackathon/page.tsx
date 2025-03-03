@@ -40,7 +40,7 @@ export default function HomePage() {
           {/* Header text */}
           <div className="text-center mb-8 font-mono font-bold ">
             <h2 className="text-gray-300 text-xl mb-1">HashHacks is here!</h2>
-            <h3 className="text-gray-300 text-lg">April 3-5 2025</h3>
+            <h3 className="text-gray-300 text-lg">April 4-5 2025</h3>
             <h1 className="text-4xl mt-4 bg-[#006462] text-transparent bg-clip-text">HASHHACKS 7.0</h1>
           </div>
 

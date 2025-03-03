@@ -32,7 +32,7 @@ const testimonials = [
     quote: "In New York, you're always just a subway ride away from something new.",
     name: "Divya Bandaru",
     designation: "Event Co-ordinator ",
-    src: "/Team/Divya.jpg"
+    src: "/Team/Divya.jpeg"
   },
   {
     quote: "Be the hero of your own stories.",
@@ -41,8 +41,8 @@ const testimonials = [
     src: "/Team/Nitin.jpg"
   },
   {
-    quote: "Khaali aadmi kuch kiya kar, kapde udedh kar siya kar",
-    name: "kapish Goyal",
+    quote: "Khaali aadmi kuch kiya kar, kapde udedh kar siya kar.",
+    name: "Kapish Goyal",
     designation: "Management Head",
     src: "/Team/Kapish.jpg"
   },
@@ -71,7 +71,7 @@ const Team = () => {
   return (
     <div className="relative overflow-hidden mt-10 pb-16">
       {/* Title */}
-      <h2 className="md:text-5xl text-4xl font-bold text-center text-white">
+      <h2 className="md:text-5xl text-4xl font-mono font-bold text-center text-white">
         Meet Our Team
       </h2>
 
