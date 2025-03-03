@@ -41,6 +41,12 @@ const testimonials = [
     src: "/Team/Nitin.jpg"
   },
   {
+    quote: "Khaali aadmi kuch kiya kar, kapde udedh kar siya kar",
+    name: "kapish Goyal",
+    designation: "Management Head",
+    src: "/Team/Kapish.jpg"
+  },
+  {
     quote: "What about second breakfast?",
     name: "Anhad Mehrotra",
     designation: "Core Team",
