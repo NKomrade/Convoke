@@ -4,26 +4,26 @@ import { ChevronRight, ChevronLeft, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const categories = ['Robotics', 'Tech', 'Gaming', 'Misc'] as const;
+const categories = ['Tech', 'Robotics', 'Gaming', 'Misc'] as const;
 
 const categoryBackgrounds = {
-  Robotics: '/Events/robot/Robot.jpg',
   Tech: '/Events/tech/Tech.jpg',
+  Robotics: '/Events/robot/Robot.jpg',
   Gaming: '/Events/gaming/Gaming.jpg',
   Misc: '/Events/extras/Extras.jpg'
 } as const;
 
 const eventsData = {
+  Tech: [
+    { title: 'Hackathon', description: 'Build innovative solutions in 24 hours', image: '/Events/tech/hashhacks.png', link: '/events/hackathon' },
+    { title: 'Tech Talks', description: "Insights from tech's brightest minds. Learn today, lead tomorrow.", image: '/Events/tech/techtalks.png', link: '/events/tech-talks' },
+    { title: 'Competitive Programming', description: 'Logic, speed, and problem-solving grit. Crack the code, conquer the challenge', image: '/Events/tech/competitiveprogramming.jpg', link: '/events/competitive-programming' }
+  ],
   Robotics: [
     { title: 'Line Follower', description: 'Precision on track, speed in control. Follow the line, claim the win.', image: '/Events/robot/LFr.jpg', link: 'https://unstop.com/p/line-follower-robot-cluster-innovation-centre-ducic-university-of-delhi-du-delhi-1413512' },
     { title: 'Micro Mouse', description: 'Maze of twists, turns, and tech. Smartest bot finds the fastest path.', image: '/Events/robot/micromouse.jpg', link: 'https://unstop.com/p/micromouse-competition-convoke-cluster-innovation-centre-ducic-university-of-delhi-du-delhi-1413511' },
     { title: 'Robowars', description: 'Sparks fly, metal collides. One bot stands, the rest fall.', image: '/Events/robot/robowars.jpg', link: '/events/robowars' },
     { title: 'Robo Soccer', description: 'Robots, goals, and endless thrill. Score, defend, and dominate the field.', image: '/Events/robot/robosoccer.jpg', link: '/events/robo-soccer' }
-  ],
-  Tech: [
-    { title: 'Hackathon', description: 'Build innovative solutions in 24 hours', image: '/Events/tech/hashhacks.png', link: '/events/hackathon' },
-    { title: 'Tech Talks', description: "Insights from tech's brightest minds. Learn today, lead tomorrow.", image: '/Events/tech/techtalks.png', link: '/events/tech-talks' },
-    { title: 'Competitive Programming', description: 'Logic, speed, and problem-solving grit. Crack the code, conquer the challenge', image: '/Events/tech/competitiveprogramming.jpg', link: '/events/competitive-programming' }
   ],
   Gaming: [
     { title: 'FC24', description: 'Virtual pitch, real excitement. Master the game, score the glory.', image: '/Events/gaming/fc24.jpg', link: '/events/fc25' },
@@ -44,7 +44,7 @@ const eventsData = {
 } as const;
 
 const Events = () => {
-  const [activeCategory, setActiveCategory] = useState<keyof typeof eventsData>('Robotics');
+  const [activeCategory, setActiveCategory] = useState<keyof typeof eventsData>('Tech');
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: 'left' | 'right') => {
