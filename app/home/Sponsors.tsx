@@ -85,7 +85,8 @@ const Sponsors = () => {
         {/* Bouncy Button Below Sponsor Cards */}
         <div className="flex justify-center mt-10">
           <a
-            href="/prospectus.pdf"
+            href="/Convoke Prospectus-1-1.pdf"
+            // download="Convoke_Prospectus.pdf"
             className="button-wrapper relative"
             target="_blank"
             rel="noopener noreferrer"
