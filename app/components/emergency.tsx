@@ -14,8 +14,8 @@ interface EmergencyModalProps {
 
 const emergencyResources: EmergencyResource[] = [
   { title: 'Disaster Helpline', contact: '1077' },
-  { title: 'Women Helpline', contact: '1091, +91 8860022690' },
-  { title: 'Child Helpline', contact: '1098, +91 8851074556' },
+  { title: 'Women Helpline', contact: '1091' },
+  { title: 'Child Helpline', contact: '1098' },
   { title: 'Emergency Response Support System', contact: '112' },
   { title: 'Police', contact: '100' },
   { title: 'Fire & Rescue', contact: '101' },
