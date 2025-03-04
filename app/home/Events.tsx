@@ -15,8 +15,8 @@ const categoryBackgrounds = {
 
 const eventsData = {
   Robotics: [
-    { title: 'Line Follower', description: 'Precision on track, speed in control. Follow the line, claim the win.', image: '/Events/robot/LFr.jpg', link: '/events/line-follower' },
-    { title: 'Micro Mouse', description: 'Maze of twists, turns, and tech. Smartest bot finds the fastest path.', image: '/Events/robot/micromouse.jpg', link: '/events/micro-mouse' },
+    { title: 'Line Follower', description: 'Precision on track, speed in control. Follow the line, claim the win.', image: '/Events/robot/LFr.jpg', link: 'https://unstop.com/p/line-follower-robot-cluster-innovation-centre-ducic-university-of-delhi-du-delhi-1413512' },
+    { title: 'Micro Mouse', description: 'Maze of twists, turns, and tech. Smartest bot finds the fastest path.', image: '/Events/robot/micromouse.jpg', link: 'https://unstop.com/p/micromouse-competition-convoke-cluster-innovation-centre-ducic-university-of-delhi-du-delhi-1413511' },
     { title: 'Robowars', description: 'Sparks fly, metal collides. One bot stands, the rest fall.', image: '/Events/robot/robowars.jpg', link: '/events/robowars' },
     { title: 'Robo Soccer', description: 'Robots, goals, and endless thrill. Score, defend, and dominate the field.', image: '/Events/robot/robosoccer.jpg', link: '/events/robo-soccer' }
   ],
@@ -131,7 +131,7 @@ const Events = () => {
                       </h3>
                       <p className="text-gray-300">{event.description}</p>
                     </div>
-                    <Link href={event.link} passHref>
+                    <Link target="_blank" href={event.link} passHref>
                       <button className="flex items-center gap-2 text-[#48D1CC] hover:text-white transition-all duration-300">
                         <span>Learn More</span>
                         <ArrowRight className="w-4 h-4 transition-transform transform hover:translate-x-1" />

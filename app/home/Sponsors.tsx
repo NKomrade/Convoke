@@ -8,15 +8,24 @@ type Sponsor = {
   logo: string;
   description: string;
   category: string;
+  website: string;
 };
 
 const sponsors: Sponsor[] = [
+  {
+    name: 'Devfolio',
+    logo: '/devfolio.png',
+    description: 'Partner who empower hackathons with seamless project submission, funding, and community engagement.',
+    category: 'Hackathon Partner',
+    website: 'https://guide.devfolio.co',
+  },
   {
     name: 'WEDO',
     logo: '/wedo.jpg',
     description: 'Partners who contribute to the development, design, or maintenance of our website.',
     category: 'Website Partner',
-  },
+    website: 'https://wedo-ebon.vercel.app',
+  }
 ];
 
 const Sponsors = () => {
@@ -27,8 +36,8 @@ const Sponsors = () => {
           Our Sponsors
         </h1>
 
-        <div className="flex justify-center items-center w-full">
-          <div className="flex w-[70%] md:w-[40%] justify-center items-center">
+        <div className="flex justify-center w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6 w-full max-w-3xl">
             {sponsors.map((sponsor, index) => (
               <div
                 key={index}
@@ -61,7 +70,7 @@ const Sponsors = () => {
                       {sponsor.description}
                     </p>
 
-                    <Link target='_blank' href='https://wedo-ebon.vercel.app' className="pt-3 sm:pt-4 transform translate-y-6 sm:translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <Link target='_blank' href={sponsor.website} className="pt-3 sm:pt-4 transform translate-y-6 sm:translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                       <button className="w-full py-2 text-xs sm:text-sm rounded-lg border border-white/80 bg-black/50 text-white">
                         Learn More
                       </button>
@@ -73,7 +82,7 @@ const Sponsors = () => {
           </div>
         </div>
 
-        {/* Bouncy Button Below WEDO Card */}
+        {/* Bouncy Button Below Sponsor Cards */}
         <div className="flex justify-center mt-10">
           <a
             href="/Convoke Prospectus-1-1.pdf"
@@ -85,22 +94,14 @@ const Sponsors = () => {
             {/* Black Shadow */}
             <div
               className="absolute inset-0 rounded-full bg-gradient-to-r from-[#006462] to-teal-600 button-shadow"
-              style={{
-                width: "178px",
-                height: "40px",
-                top: "6px",
-                left: "6px",
-              }}
+              style={{ width: "178px", height: "40px", top: "6px", left: "6px" }}
             ></div>
 
             {/* Button Content */}
             <button className="button-content relative flex items-center justify-center rounded-full border-[2.5px] border-black bg-white transition-transform duration-300 active:scale-95">
               <div
                 className="flex items-center justify-center rounded-full border-[2px] border-black"
-                style={{
-                  width: "180px",
-                  height: "42px",
-                }}
+                style={{ width: "180px", height: "42px" }}
               >
                 <span className="font-poppins text-[15px] font-[590] leading-[19.5px] text-black">
                   Wish to Sponsor us?
@@ -109,7 +110,6 @@ const Sponsors = () => {
             </button>
           </a>
         </div>
-
       </div>
     </div>
   );
