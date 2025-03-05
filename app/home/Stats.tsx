@@ -523,19 +523,19 @@ const StatCard = memo(({
   const getCornerImage = (variant: StatCardProps['variant']) => {
     switch (variant) {
       case 'date':
-        return '/Static/Billa.png';
+        return '/Billa.png';
       case 'footfall':
-        return '/Static/Billa.png';
+        return '/Billa.png';
       case 'prizes':
-        return '/Static/Billa.png';
+        return '/Billa.png';
       case 'eventDates':
-        return '/Static/Billa.png';
+        return '/Billa.png';
       case 'edition':
-        return '/Static/Billa.png';
+        return '/Billa.png';
       case 'events':
-        return '/Static/Billa.png';
+        return '/Billa.png';
       case 'sponsors':
-        return '/Static/Billa.png';
+        return '/Billa.png';
       default:
         return '';
     }

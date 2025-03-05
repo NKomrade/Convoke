@@ -32,10 +32,10 @@ const eventsData = {
     { title: 'Tekken', description: 'Precision, power, and perfect combos. Fight hard, win harder.', image: '/Events/gaming/tekken.jpg', link: 'https://forms.gle/kgtPnUNmi9hVhQvR8' }
   ],
   Misc: [
-    { title: 'Sci Biz Tech', description: 'Business, tech, and a battle of wits. Answer smart, lead the charts.', image: '/Events/extras/biztech.jpeg', link: 'https://docs.google.com/forms/d/e/1FAIpQLSetnDUZ15qPPwLixHf6fymqA6KzJPF4Fb9sOhevz1H4ZvYuTg/viewform' },
+    { title: 'Sci Biz Tech', description: 'Business, tech, and a battle of wits. Answer smart, lead the charts.', image: '/Events/extras/scibiztech.jpg', link: 'https://docs.google.com/forms/d/e/1FAIpQLSetnDUZ15qPPwLixHf6fymqA6KzJPF4Fb9sOhevz1H4ZvYuTg/viewform' },
     { title: 'Treasure Hunt', description: 'Clues, puzzles, and a race against time. Think fast, find faster.', image: '/Events/extras/treasurehunt.jpg', link: '/events/treasure-hunt' },
     { title: 'Escape Room', description: 'Get ready for a thrill-packed challenge with puzzles and hidden clues! Can you crack the codes and escape in time?', image: '/Events/extras/escaperoom.jpg', link: '/events/escape-room' },
-    { title: 'Anime Quiz', description: 'Test your anime knowledge with thrilling questions and hidden clues! Are you the ultimate otaku who can ace this quiz?', image: '/Events/extras/Anime.jpg', link: '/events/anime' },
+    { title: 'Pop Culture Quiz', description: 'Think you’re a pop culture expert? Join our ultimate quiz and put your knowledge to the test!', image: '/Events/extras/pop_quiz.jpeg', link: 'https://docs.google.com/forms/d/e/1FAIpQLScmQDjqqrFxLhXUR0IW8f5vrCHE8CeQQvOi5dS3QhMfTJNdPQ/viewform' },
     { title: 'General Quiz', description: 'Curiosity meets competition. Answer right, win bright.', image: '/Events/extras/GK.png', link: 'https://docs.google.com/forms/d/e/1FAIpQLScmQDjqqrFxLhXUR0IW8f5vrCHE8CeQQvOi5dS3QhMfTJNdPQ/viewform' },
     { title: 'Stock Market Simulator', description: 'Trade, invest, and outsmart the market. Virtual stakes, real strategies.', image: '/Events/extras/stockmarket.jpeg', link: '/events/stock-market-simulator' },
     { title: 'Poker Bots', description: 'Bluff, bet, and build the best bot. AI meets high-stakes poker.', image: '/Events/extras/poker.jpg', link: '/events/poker-bots' },
