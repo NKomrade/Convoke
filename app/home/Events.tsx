@@ -23,13 +23,13 @@ const eventsData = {
     { title: 'Line Follower', description: 'Precision on track, speed in control. Follow the line, claim the win.', image: '/Events/robot/LFr.jpg', link: 'https://unstop.com/p/line-follower-robot-cluster-innovation-centre-ducic-university-of-delhi-du-delhi-1413512' },
     { title: 'Micro Mouse', description: 'Maze of twists, turns, and tech. Smartest bot finds the fastest path.', image: '/Events/robot/micromouse.jpg', link: 'https://unstop.com/p/micromouse-competition-convoke-cluster-innovation-centre-ducic-university-of-delhi-du-delhi-1413511' },
     { title: 'Robowars', description: 'Sparks fly, metal collides. One bot stands, the rest fall.', image: '/Events/robot/robowars.jpg', link: '/events/robowars' },
-    { title: 'Robo Soccer', description: 'Robots, goals, and endless thrill. Score, defend, and dominate the field.', image: '/Events/robot/robosoccer.jpg', link: '/events/robo-soccer' }
+    { title: 'Robo Soccer', description: 'Robots, goals, and endless thrill. Score, defend, and dominate the field.', image: '/Events/robot/robosoccer.jpg', link: 'https://unstop.com/p/robo-soccer-competition-convoke-cluster-innovation-centre-ducic-university-of-delhi-du-delhi-1413841' }
   ],
   Gaming: [
-    { title: 'FC24', description: 'Virtual pitch, real excitement. Master the game, score the glory.', image: '/Events/gaming/fc24.jpg', link: '/events/fc25' },
-    { title: 'Mortal Kombat', description: 'Fight with skill, finish with flair. Only the strongest survive.', image: '/Events/gaming/mortal.jpg', link: '/events/mortal-kombat' },
-    { title: 'Mini Militia', description: 'Fast, fun, and fiercely competitive. Survive the chaos, dominate the battlefield.', image: '/Events/gaming/minimilitia.jpg', link: '/events/mini-militia' },
-    { title: 'Tekken', description: 'Precision, power, and perfect combos. Fight hard, win harder.', image: '/Events/gaming/tekken.jpg', link: '/events/tekken' }
+    { title: 'FC24', description: 'Virtual pitch, real excitement. Master the game, score the glory.', image: '/Events/gaming/fc24.jpg', link: 'https://forms.gle/KLmJBErAoYTQGzQJ9' },
+    { title: 'Mortal Kombat', description: 'Fight with skill, finish with flair. Only the strongest survive.', image: '/Events/gaming/mortal.jpg', link: 'https://forms.gle/Nk79BZyxTCuJXmCQA' },
+    { title: 'Rocket League', description: 'Fast, fun, and fiercely competitive. Survive the chaos, dominate the field.', image: '/Events/gaming/rocket.jpg', link: 'https://forms.gle/jhquM8TQhKZfphc58' },
+    { title: 'Tekken', description: 'Precision, power, and perfect combos. Fight hard, win harder.', image: '/Events/gaming/tekken.jpg', link: 'https://forms.gle/kgtPnUNmi9hVhQvR8' }
   ],
   Misc: [
     { title: 'Sci Biz Tech', description: 'Business, tech, and a battle of wits. Answer smart, lead the charts.', image: '/Events/extras/biztech.jpeg', link: 'https://docs.google.com/forms/d/e/1FAIpQLSetnDUZ15qPPwLixHf6fymqA6KzJPF4Fb9sOhevz1H4ZvYuTg/viewform' },
