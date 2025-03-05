@@ -17,7 +17,7 @@ const sponsors: Sponsor[] = [
     logo: '/devfolio.png',
     description: 'Partner who empower hackathons with seamless project submission, funding, and community engagement.',
     category: 'Hackathon Partner',
-    website: 'https://guide.devfolio.co',
+    website: 'https://devfolio.co/home/',
   },
   {
     name: 'WEDO',

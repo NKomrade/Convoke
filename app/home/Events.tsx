@@ -15,7 +15,7 @@ const categoryBackgrounds = {
 
 const eventsData = {
   Tech: [
-    { title: 'Hackathon', description: 'Build innovative solutions in 24 hours', image: '/Events/tech/hashhacks.png', link: '/events/hackathon' },
+    { title: 'Hackathon', description: 'Build innovative solutions in 24 hours', image: '/Events/tech/hashhacks.png', link: 'https://hashhacks.convoke.in' },
     { title: 'Tech Talks', description: "Insights from tech's brightest minds. Learn today, lead tomorrow.", image: '/Events/tech/techtalks.png', link: '/events/tech-talks' },
     { title: 'Competitive Programming', description: 'Logic, speed, and problem-solving grit. Crack the code, conquer the challenge', image: '/Events/tech/competitiveprogramming.jpg', link: '/events/competitive-programming' }
   ],
@@ -33,14 +33,14 @@ const eventsData = {
   ],
   Misc: [
     { title: 'Sci Biz Tech', description: 'Business, tech, and a battle of wits. Answer smart, lead the charts.', image: '/Events/extras/scibiztech.jpg', link: 'https://docs.google.com/forms/d/e/1FAIpQLSetnDUZ15qPPwLixHf6fymqA6KzJPF4Fb9sOhevz1H4ZvYuTg/viewform' },
-    { title: 'Treasure Hunt', description: 'Clues, puzzles, and a race against time. Think fast, find faster.', image: '/Events/extras/treasurehunt.jpg', link: '/events/treasure-hunt' },
-    { title: 'Escape Room', description: 'Get ready for a thrill-packed challenge with puzzles and hidden clues! Can you crack the codes and escape in time?', image: '/Events/extras/escaperoom.jpg', link: '/events/escape-room' },
+    { title: 'Treasure Hunt', description: 'Clues, puzzles, and a race against time. Think fast, find faster.', image: '/Events/extras/treasurehunt.jpg', link: 'https://docs.google.com/forms/d/e/1FAIpQLSdLZslDOEC-lddjF0SsaCSWGGZMh2of9UIndpwGJM8zQ26Sww/viewform?usp=header' },
+    { title: 'Escape Room', description: 'Get ready for a thrill-packed challenge with puzzles and hidden clues! Can you crack the codes and escape in time?', image: '/Events/extras/escaperoom.jpg', link: 'https://forms.gle/1GcuGnrwabb9SJyGA' },
     { title: 'Pop Culture Quiz', description: 'Think you’re a pop culture expert? Join our ultimate quiz and put your knowledge to the test!', image: '/Events/extras/pop_quiz.jpeg', link: 'https://docs.google.com/forms/d/e/1FAIpQLScmQDjqqrFxLhXUR0IW8f5vrCHE8CeQQvOi5dS3QhMfTJNdPQ/viewform' },
     { title: 'Sports Quiz', description: 'Are you a true sports fanatic? Join our ultimate sports quiz and prove your game knowledge!', image: '/Events/extras/sportsquiz.jpg', link: 'https://docs.google.com/forms/d/e/1FAIpQLScmQDjqqrFxLhXUR0IW8f5vrCHE8CeQQvOi5dS3QhMfTJNdPQ/viewform' },
     { title: 'General Quiz', description: 'Curiosity meets competition. Answer right, win bright.', image: '/Events/extras/GK.png', link: 'https://docs.google.com/forms/d/e/1FAIpQLScmQDjqqrFxLhXUR0IW8f5vrCHE8CeQQvOi5dS3QhMfTJNdPQ/viewform' },
     { title: 'Stock Market Simulator', description: 'Trade, invest, and outsmart the market. Virtual stakes, real strategies.', image: '/Events/extras/stockmarket.jpeg', link: '/events/stock-market-simulator' },
     { title: 'Poker Bots', description: 'Bluff, bet, and build the best bot. AI meets high-stakes poker.', image: '/Events/extras/poker.jpg', link: '/events/poker-bots' },
-    { title: 'Case Study', description: 'Analyze, strategize, and present your edge. Real problems, smart solutions.', image: '/Events/extras/casestudy.jpg', link: '/events/case-study' },
+    { title: 'Case Study', description: 'Analyze, strategize, and present your edge. Real problems, smart solutions.', image: '/Events/extras/casestudy.jpg', link: '/events/case-study' }
   ]
 } as const;
 
@@ -89,7 +89,7 @@ const Events = () => {
                 onClick={() => setActiveCategory(category)}
                 className={`md:px-6 md:py-3 px-4 py-3 rounded-full text-sm md:font-medium font-sm transition-all duration-300
                   ${activeCategory === category
-                    ? 'bg-[#48D1CC] text-black shadow-lg shadow-[#48D1CC]/30 scale-105'
+                    ? 'bg-[#48D1CC] text-black shadow-lg shadow-[#48D1CC]/40  '
                     : 'bg-white/10 text-white hover:bg-white/20'}`}
               >
                 {category}
